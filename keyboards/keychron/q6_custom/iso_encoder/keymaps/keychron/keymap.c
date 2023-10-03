@@ -37,8 +37,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LCTL,  KC_LOPTN, KC_LCMMD,                               KC_SPC,                                 KC_RCMMD, KC_ROPTN, MO(MAC_FN), KC_RCTL,    KC_LEFT,  KC_DOWN,  KC_RGHT,  KC_P0,              KC_PDOT,  KC_PENT),
     [MAC_FN] = LAYOUT_iso_110(
         _______,  KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,     RGB_TOG,    _______,  _______,  RGB_TOG,  _______,  _______,  _______,  _______,
-        _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    _______,    _______,  _______,  _______,  _______,  _______,  _______,  _______,
-        RGB_TOG,  RGB_MOD,  RGB_VAI,  RGB_HUI,  RGB_SAI,  RGB_SPI,  _______,  _______,  _______,  _______,  _______,  _______,  _______,                _______,  _______,  _______,  _______,  _______,  _______,
+        _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    QK_RBT,     _______,  _______,  _______,  _______,  _______,  _______,  _______,
+        RGB_TOG,  RGB_MOD,  RGB_VAI,  RGB_HUI,  RGB_SAI,  RGB_SPI,  _______,  _______,  _______,  _______,  _______,  _______,  _______,                EE_CLR,   _______,  _______,  _______,  _______,  _______,
         _______,  RGB_RMOD, RGB_VAD,  RGB_HUD,  RGB_SAD,  RGB_SPD,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    _______,                                  _______,  _______,  _______,  _______,
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  NK_TOGG,  _______,  _______,  _______,  _______,              _______,              _______,            _______,  _______,  _______,
         _______,  _______,  _______,                                _______,                                _______,  _______,  _______,    _______,    _______,  _______,  _______,  _______,            _______,  _______),
@@ -51,8 +51,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LCTL,  KC_LWIN,  KC_LALT,                                KC_SPC,                                 KC_RALT,  KC_RWIN,  MO(WIN_FN), KC_RCTL,    KC_LEFT,  KC_DOWN,  KC_RGHT,  KC_P0,              KC_PDOT,  KC_PENT),
     [WIN_FN] = LAYOUT_iso_110(
         _______,  KC_BRID,  KC_BRIU,  KC_TASK,  KC_FLXP,  RGB_VAD,  RGB_VAI,  KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_MUTE,  KC_VOLD,  KC_VOLU,    RGB_TOG,    _______,  _______,  RGB_TOG,  _______,  _______,  _______,  _______,
-        _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    _______,    _______,  _______,  _______,  _______,  _______,  _______,  _______,
-        RGB_TOG,  RGB_MOD,  RGB_VAI,  RGB_HUI,  RGB_SAI,  RGB_SPI,  _______,  _______,  _______,  _______,  _______,  _______,  _______,                _______,  _______,  _______,  KC_BTN1,  KC_MS_U,  KC_BTN2,
+        _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    QK_RBT,     _______,  _______,  _______,  _______,  _______,  _______,  _______,
+        RGB_TOG,  RGB_MOD,  RGB_VAI,  RGB_HUI,  RGB_SAI,  RGB_SPI,  _______,  _______,  _______,  _______,  _______,  _______,  _______,                EE_CLR,   _______,  _______,  KC_BTN1,  KC_MS_U,  KC_BTN2,
         _______,  RGB_RMOD, RGB_VAD,  RGB_HUD,  RGB_SAD,  RGB_SPD,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    _______,                                  KC_MS_L,  KC_BTN3,  KC_MS_R,  KC_BTN8,
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  NK_TOGG,  _______,  _______,  _______,  _______,              _______,              KC_WH_U,            KC_BTN4,  KC_MS_D,  KC_BTN5,
         _______,  _______,  _______,                                _______,                                _______,  _______,  _______,    _______,    KC_WH_L,  KC_WH_D,  KC_WH_R,  KC_BTN6,            KC_BTN7,  _______),
@@ -73,10 +73,62 @@ void housekeeping_task_user(void) {
     housekeeping_task_keychron();
 }
 
+// Protect soft reboot and eeprom reset features with timers
+static bool reboot_key_hold = false;
+static uint16_t reboot_key_timer = 0;
+
+static bool reset_key_hold = false;
+static uint16_t reset_key_timer = 0;
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if(!process_record_keychron(keycode, record)) {
         return false;
     }
+    switch (keycode) {
+        case QK_RBT:
+            if (record->event.pressed) {
+                // On key pressed
+                reboot_key_hold = true;
+                reboot_key_timer = record->event.time;  // Set timer
+            } else {
+                // On key release
+                reboot_key_hold = false;
+                reboot_key_timer = 0;  // Reset timer
+            }
+            return false;  // Skip all further processing of this key
+        case EE_CLR:
+            if (record->event.pressed) {
+                // On key pressed
+                reset_key_hold = true;
+                reset_key_timer = record->event.time;  // Set timer
+            } else {
+                // On key release
+                reset_key_hold = false;
+                reset_key_timer = 0;  // Reset timer
+            }
+            return false;  // Skip all further processing of this key
+        default:
+            return true;  // Process all other keycodes normally
+    }
+}
 
-    return true;
+// Take care: this is called at every matrix scan (highest possible frequency)
+void matrix_scan_user(void) {
+    if (reboot_key_hold == true) {
+        if (timer_elapsed(reboot_key_timer) > 4000) {  // 4 seconds
+            reboot_key_hold = false;
+            reset_key_timer = 0;  // Reset timer
+            soft_reset_keyboard();  // Soft reboot
+            return;
+        }
+    }
+    if (reset_key_hold == true) {
+        if (timer_elapsed(reset_key_timer) > 4000) {  // 4 seconds
+            reset_key_hold = false;
+            reset_key_timer = 0;  // Reset timer
+            eeconfig_disable();  // Reset eeprom to default
+            soft_reset_keyboard();  // Soft reboot
+            return;
+        }
+    }
 }
