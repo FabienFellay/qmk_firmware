@@ -30,6 +30,9 @@
 #define SNLED27351_CURRENT_TUNE \
     { 0xA4, 0xA4, 0x52, 0xA4, 0xA4, 0x52, 0xA4, 0xA4, 0x52, 0xA4, 0xA4, 0x52 }
 
+/* LED Driver Configuration */
+#define WS2812_BYTE_ORDER WS2812_BYTE_ORDER_RGB
+
 /* DIP switch */
 #define DIP_SWITCH_MATRIX_GRID  { {5, 4} }
 

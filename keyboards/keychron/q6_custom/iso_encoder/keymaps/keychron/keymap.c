@@ -17,6 +17,37 @@
 #include QMK_KEYBOARD_H
 #include "keychron_common.h"
 
+// Constants, declarations and definitions for the LEDs notification
+#define BLINK_WAIT_MS 300
+#define PRE_POST_WAIT_MS 600
+#define COL_SEQ_LEN 3
+
+static const RGB rgb_col_seq[COL_SEQ_LEN] = {{RGB_RED}, {RGB_GREEN}, {RGB_BLUE}};
+static const RGB cmy_col_seq[COL_SEQ_LEN] = {{RGB_CYAN}, {RGB_MAGENTA}, {RGB_YELLOW}};
+
+extern void rgb_matrix_update_pwm_buffers(void);
+
+void led_notification(const RGB col_seq[]) {
+    rgb_matrix_set_color_all(RGB_OFF);  // Set a single color to the whole LED matrix
+    rgb_matrix_update_pwm_buffers();  // Force LED driver to process the last requests
+    wait_ms(PRE_POST_WAIT_MS);  // Blocking call
+
+    // LED blinking (it cycles through various colors)
+    for (uint8_t i = 0; i < COL_SEQ_LEN; i++) {
+        rgb_matrix_set_color_all(col_seq[i].r, col_seq[i].g, col_seq[i].b);
+        rgb_matrix_update_pwm_buffers();
+        wait_ms(BLINK_WAIT_MS);
+
+        rgb_matrix_set_color_all(RGB_OFF);
+        rgb_matrix_update_pwm_buffers();
+        wait_ms(BLINK_WAIT_MS);
+    }
+
+    rgb_matrix_set_color_all(RGB_OFF);
+    rgb_matrix_update_pwm_buffers();
+    wait_ms(PRE_POST_WAIT_MS);
+}
+
 // clang-format off
 
 enum layers{
@@ -73,7 +104,9 @@ void housekeeping_task_user(void) {
     housekeeping_task_keychron();
 }
 
-// Protect soft reboot and eeprom reset features with timers
+// Protect soft reboot and EEPROM reset features with timers and add LED notification
+#define RESET_HOLD_TIME_MS 4000
+
 static bool reboot_key_hold = false;
 static uint16_t reboot_key_timer = 0;
 
@@ -115,18 +148,26 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 // Take care: this is called at every matrix scan (highest possible frequency)
 void matrix_scan_user(void) {
     if (reboot_key_hold == true) {
-        if (timer_elapsed(reboot_key_timer) > 4000) {  // 4 seconds
+        if (timer_elapsed(reboot_key_timer) > RESET_HOLD_TIME_MS) {  // ms
             reboot_key_hold = false;
             reset_key_timer = 0;  // Reset timer
+
+            // LEDs notification before reboot (blocking call)
+            led_notification(rgb_col_seq);
+
             soft_reset_keyboard();  // Soft reboot
             return;
         }
     }
     if (reset_key_hold == true) {
-        if (timer_elapsed(reset_key_timer) > 4000) {  // 4 seconds
+        if (timer_elapsed(reset_key_timer) > RESET_HOLD_TIME_MS) {  // ms
             reset_key_hold = false;
             reset_key_timer = 0;  // Reset timer
-            eeconfig_disable();  // Reset eeprom to default
+
+            // LEDs notification before EEPROM reset (blocking call)
+            led_notification(cmy_col_seq);
+
+            eeconfig_disable();  // Reset EEPROM to default
             soft_reset_keyboard();  // Soft reboot
             return;
         }
