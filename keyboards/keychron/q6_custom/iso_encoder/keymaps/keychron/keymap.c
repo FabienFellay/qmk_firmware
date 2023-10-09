@@ -19,10 +19,11 @@
 
 // Constants, declarations and definitions for the LEDs notification
 #define BLINK_WAIT_MS 300
-#define PRE_POST_WAIT_MS 600
+#define PRE_WAIT_MS 600
+#define POST_WAIT_MS 600
 #define COL_SEQ_LEN 3
 
-static const RGB rgb_col_seq[COL_SEQ_LEN] = {{RGB_RED}, {RGB_GREEN}, {RGB_BLUE}};
+static const RGB rgb_col_seq[COL_SEQ_LEN] = {{RGB_RED},  {RGB_GREEN},   {RGB_BLUE}};
 static const RGB cmy_col_seq[COL_SEQ_LEN] = {{RGB_CYAN}, {RGB_MAGENTA}, {RGB_YELLOW}};
 
 extern void rgb_matrix_update_pwm_buffers(void);
@@ -30,7 +31,7 @@ extern void rgb_matrix_update_pwm_buffers(void);
 void led_notification(const RGB col_seq[]) {
     rgb_matrix_set_color_all(RGB_OFF);  // Set a single color to the whole LED matrix
     rgb_matrix_update_pwm_buffers();  // Force LED driver to process the last requests
-    wait_ms(PRE_POST_WAIT_MS);  // Blocking call
+    wait_ms(PRE_WAIT_MS);  // Blocking call
 
     // LED blinking (it cycles through various colors)
     for (uint8_t i = 0; i < COL_SEQ_LEN; i++) {
@@ -45,7 +46,7 @@ void led_notification(const RGB col_seq[]) {
 
     rgb_matrix_set_color_all(RGB_OFF);
     rgb_matrix_update_pwm_buffers();
-    wait_ms(PRE_POST_WAIT_MS);
+    wait_ms(POST_WAIT_MS);
 }
 
 // clang-format off
@@ -56,7 +57,6 @@ enum layers{
   WIN_BASE,
   WIN_FN
 };
-
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [MAC_BASE] = LAYOUT_iso_110(
@@ -69,10 +69,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [MAC_FN] = LAYOUT_iso_110(
         _______,  KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,     RGB_TOG,    _______,  _______,  RGB_TOG,  _______,  _______,  _______,  _______,
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    QK_RBT,     _______,  _______,  _______,  _______,  _______,  _______,  _______,
-        RGB_TOG,  RGB_MOD,  RGB_VAI,  RGB_HUI,  RGB_SAI,  RGB_SPI,  _______,  _______,  _______,  _______,  _______,  _______,  _______,                EE_CLR,   _______,  _______,  _______,  _______,  _______,
-        _______,  RGB_RMOD, RGB_VAD,  RGB_HUD,  RGB_SAD,  RGB_SPD,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    _______,                                  _______,  _______,  _______,  _______,
-        _______,  _______,  _______,  _______,  _______,  _______,  _______,  NK_TOGG,  _______,  _______,  _______,  _______,              _______,              _______,            _______,  _______,  _______,
-        _______,  _______,  _______,                                _______,                                _______,  _______,  _______,    _______,    _______,  _______,  _______,  _______,            _______,  _______),
+        RGB_TOG,  RGB_MOD,  RGB_VAI,  RGB_HUI,  RGB_SAI,  RGB_SPI,  _______,  _______,  _______,  _______,  _______,  _______,  _______,                EE_CLR,   _______,  _______,  KC_BTN1,  KC_MS_U,  KC_BTN2,
+        _______,  RGB_RMOD, RGB_VAD,  RGB_HUD,  RGB_SAD,  RGB_SPD,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    _______,                                  KC_MS_L,  KC_BTN3,  KC_MS_R,  KC_BTN8,
+        _______,  _______,  _______,  _______,  _______,  _______,  _______,  NK_TOGG,  _______,  _______,  _______,  _______,              _______,              KC_WH_U,            KC_BTN4,  KC_MS_D,  KC_BTN5,
+        _______,  _______,  _______,                                _______,                                _______,  _______,  _______,    _______,    KC_WH_L,  KC_WH_D,  KC_WH_R,  KC_BTN6,            KC_BTN7,  _______),
     [WIN_BASE] = LAYOUT_iso_110(
         KC_ESC,   KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,     KC_MUTE,    KC_PSCR,  KC_SCRL,  KC_PAUS,  KC_WSCH,  KC_MAIL,  KC_CALC,  KC_MYCM,
         KC_GRV,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,     KC_BSPC,    KC_INS,   KC_HOME,  KC_PGUP,  KC_NUM,   KC_PSLS,  KC_PAST,  KC_PMNS,
