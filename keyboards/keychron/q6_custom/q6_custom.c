@@ -16,6 +16,9 @@
 
 #include "quantum.h"
 
+static const RGB rgb_on = {RGB_WHITE};
+static const RGB rgb_off = {RGB_OFF};
+
 const matrix_row_t matrix_mask[] = {
     0b11111111111111111111,
     0b11111111111111111111,
@@ -39,7 +42,12 @@ bool dip_switch_update_kb(uint8_t index, bool active) {
 
 #endif // DIP_SWITCH_ENABLE
 
-#if defined(RGB_MATRIX_ENABLE) && (defined(CAPS_LOCK_LED_INDEX) || defined(NUM_LOCK_LED_INDEX) || defined(SCROLL_LOCK_LED_INDEX))
+#if defined(RGB_MATRIX_ENABLE) && (defined(CAPS_LOCK_LED_INDEX) || \
+    defined(NUM_LOCK_LED_INDEX) || defined(SCROLL_LOCK_LED_INDEX))
+#    define OS_STATE_KEYS
+#endif
+
+#ifdef OS_STATE_KEYS
 
 bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
     if (!process_record_user(keycode, record)) {
@@ -51,7 +59,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                 switch (rgb_matrix_get_flags()) {
                     case LED_FLAG_ALL: {
                         rgb_matrix_set_flags(LED_FLAG_NONE);
-                        rgb_matrix_set_color_all(0, 0, 0);
+                        rgb_matrix_set_color_all(rgb_off.r, rgb_off.g, rgb_off.b);
                     } break;
                     default: {
                         rgb_matrix_set_flags(LED_FLAG_ALL);
@@ -74,32 +82,32 @@ bool rgb_matrix_indicators_advanced_kb(uint8_t led_min, uint8_t led_max) {
     // RGB_MATRIX_INDICATOR_SET_COLOR(index, red, green, blue);
 #    if defined(CAPS_LOCK_LED_INDEX)
     if (host_keyboard_led_state().caps_lock) {
-        RGB_MATRIX_INDICATOR_SET_COLOR(CAPS_LOCK_LED_INDEX, 255, 255, 255);
+        RGB_MATRIX_INDICATOR_SET_COLOR(CAPS_LOCK_LED_INDEX, rgb_on.r, rgb_on.g, rgb_on.b);
     } else {
         if (!rgb_matrix_get_flags()) {
-            RGB_MATRIX_INDICATOR_SET_COLOR(CAPS_LOCK_LED_INDEX, 0, 0, 0);
+            RGB_MATRIX_INDICATOR_SET_COLOR(CAPS_LOCK_LED_INDEX, rgb_off.r, rgb_off.g, rgb_off.b);
         }
     }
 #    endif // CAPS_LOCK_LED_INDEX
 #    if defined(NUM_LOCK_LED_INDEX)
     if (host_keyboard_led_state().num_lock) {
-        RGB_MATRIX_INDICATOR_SET_COLOR(NUM_LOCK_LED_INDEX, 255, 255, 255);
+        RGB_MATRIX_INDICATOR_SET_COLOR(NUM_LOCK_LED_INDEX, rgb_on.r, rgb_on.g, rgb_on.b);
     } else {
         if (!rgb_matrix_get_flags()) {
-            RGB_MATRIX_INDICATOR_SET_COLOR(NUM_LOCK_LED_INDEX, 0, 0, 0);
+            RGB_MATRIX_INDICATOR_SET_COLOR(NUM_LOCK_LED_INDEX, rgb_off.r, rgb_off.g, rgb_off.b);
         }
     }
 #    endif // NUM_LOCK_LED_INDEX
 #    if defined(SCROLL_LOCK_LED_INDEX)
     if (host_keyboard_led_state().scroll_lock) {
-        RGB_MATRIX_INDICATOR_SET_COLOR(SCROLL_LOCK_LED_INDEX, 255, 255, 255);
+        RGB_MATRIX_INDICATOR_SET_COLOR(SCROLL_LOCK_LED_INDEX, rgb_on.r, rgb_on.g, rgb_on.b);
     } else {
         if (!rgb_matrix_get_flags()) {
-            RGB_MATRIX_INDICATOR_SET_COLOR(SCROLL_LOCK_LED_INDEX, 0, 0, 0);
+            RGB_MATRIX_INDICATOR_SET_COLOR(SCROLL_LOCK_LED_INDEX, rgb_off.r, rgb_off.g, rgb_off.b);
         }
     }
 #    endif // SCROLL_LOCK_LED_INDEX
     return true;
 }
 
-#endif // RGB_MATRIX_ENABLE...
+#endif // OS_STATE_KEYS
