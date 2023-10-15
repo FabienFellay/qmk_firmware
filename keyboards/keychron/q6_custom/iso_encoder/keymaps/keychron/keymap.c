@@ -23,8 +23,8 @@
 #define POST_WAIT_MS 600
 #define COL_SEQ_LEN 3
 
-static const RGB rgb_col_seq[COL_SEQ_LEN] = {{RGB_RED},  {RGB_GREEN},   {RGB_BLUE}};
-static const RGB cmy_col_seq[COL_SEQ_LEN] = {{RGB_CYAN}, {RGB_MAGENTA}, {RGB_YELLOW}};
+static const RGB rgb_col_seq[COL_SEQ_LEN] = {(RGB){RGB_RED},  (RGB){RGB_GREEN},   (RGB){RGB_BLUE}};
+static const RGB cmy_col_seq[COL_SEQ_LEN] = {(RGB){RGB_CYAN}, (RGB){RGB_MAGENTA}, (RGB){RGB_YELLOW}};
 
 extern void rgb_matrix_update_pwm_buffers(void);
 
@@ -172,4 +172,15 @@ void matrix_scan_user(void) {
             return;
         }
     }
+}
+
+// Default EEPROM settings after EEPROM reset: N-key rollover
+void eeconfig_init_user(void) {
+    // Enable NKRO immediately after reset
+    keymap_config.raw = 0;  // All options disabled
+
+    clear_keyboard();  // Clear first buffer to prevent stuck keys
+    keymap_config.nkro = true;  // Enable NKRO
+    eeconfig_update_keymap(keymap_config.raw);  // Write default value to EEPROM now
+    clear_keyboard();  // Clear to prevent stuck keys
 }
