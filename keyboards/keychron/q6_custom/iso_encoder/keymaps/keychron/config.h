@@ -19,20 +19,22 @@
 /* Default EEPROM settings after EEPROM reset: change the rgb matrix default */
 
 /* Select the default RGB matrix status (enable RGB feature by default) */
-// Set from config.h not implemented: enabled by default
+// Setting this from config.h is not implemented: enabled by default
 
 /* Select the default RGB matrix effect */
 #ifdef ENABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE
 #    define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_SOLID_REACTIVE_SIMPLE
 #endif
 
-/* Select the default RGB matrix color (hsv green) */
-#define RGB_MATRIX_DEFAULT_HUE 85
+/* Select the default RGB matrix color (not exactly pure hsv green) */
+#define RGB_MATRIX_HUE_STEP 8
+// This color ensures passing by pure hsv red considering the chosen hue step
+#define RGB_MATRIX_DEFAULT_HUE 80  // Close to green
 #define RGB_MATRIX_DEFAULT_SAT 255
 #define RGB_MATRIX_DEFAULT_VAL 255
 
 /* Select the default RGB matrix effect speed (value from 0 to 255) */
 #define RGB_MATRIX_DEFAULT_SPD UINT8_MAX / 4
 
-/* Select the default RGB matrix flag (disable RGB effect by default) */
-// Set from config.h not implemented: enabled by default
+/* Select the default RGB matrix flag (disable RGB effect on all keys by default) */
+// Setting this from config.h is not implemented: all flags enabled by default
