@@ -115,7 +115,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
 
         // Disable the RGB matrix management if the rgb matrix effect is off
         case RGB_MODE_FORWARD ... RGB_MODE_TWINKLE:  // For any of the RGB codes (see quantum/keycodes.h for reference)
-            // Continue further processing of this key only if the rgb matrix effect is on
+            // Continue further processing of those keys only if the rgb matrix effect is on
             return kb_config.rgb_matrix_effect_enabled;
 
         default:
