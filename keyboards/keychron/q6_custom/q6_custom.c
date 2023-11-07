@@ -16,9 +16,6 @@
 
 #include "quantum.h"
 
-static const RGB rgb_on = (RGB){RGB_WHITE};
-static const RGB rgb_off = (RGB){RGB_OFF};
-
 const matrix_row_t matrix_mask[] = {
     0b11111111111111111111,
     0b11111111111111111111,
@@ -49,29 +46,81 @@ bool dip_switch_update_kb(uint8_t index, bool active) {
 
 #ifdef HOST_STATUS_KEYS
 
+static const RGB rgb_on = (RGB){RGB_WHITE};
+static const RGB rgb_off = (RGB){RGB_OFF};
+
+typedef union {
+  uint32_t raw;
+  struct {
+    bool    rgb_matrix_effect_enabled : 1;
+  };
+} kb_config_t;
+
+kb_config_t kb_config;
+
+// Keyboard level default EEPROM settings after EEPROM reset
+void eeconfig_init_kb(void) {
+    kb_config.raw = 0;
+    kb_config.rgb_matrix_effect_enabled = false;  // We want the rgb effect disabled by default
+    eeconfig_update_kb(kb_config.raw);  // Write default value to EEPROM
+
+    eeconfig_init_user();
+}
+
+// Keyboard level matrix init
+void keyboard_post_init_kb(void) {
+    // Read the custom keyboard config from EEPROM
+    kb_config.raw = eeconfig_read_kb();
+
+    // Set initial rgb effect state after boot
+    if (!kb_config.rgb_matrix_effect_enabled) {
+        // Disable the rgb effect by setting the mode and the color without writing to the EEPROM
+        rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
+        rgb_matrix_sethsv_noeeprom(HSV_OFF);
+    }
+    // else the whole rgb config is automatically loaded from EEPROM
+}
+
 bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
     if (!process_record_user(keycode, record)) {
         return false;
     }
+
     switch (keycode) {
         case RGB_TOG:
             if (record->event.pressed) {
-                switch (rgb_matrix_get_flags()) {
-                    case LED_FLAG_ALL: {
-                        rgb_matrix_set_flags(LED_FLAG_NONE);
-                    } break;
-                    default: {
-                        rgb_matrix_set_flags(LED_FLAG_ALL);
-                    } break;
+                // On key press
+                if (!rgb_matrix_is_enabled() || (rgb_matrix_get_flags() != LED_FLAG_ALL)) {
+                    // Ensure that the rgb matrix feature is enabled with all flags
+                    rgb_matrix_set_flags(LED_FLAG_ALL);
+                    rgb_matrix_enable();
+                }
+
+                // Toggle rgb matrix effect
+                if (kb_config.rgb_matrix_effect_enabled) {
+                    // Disable the rgb effect by setting the mode and the color without writing to the EEPROM
+                    rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
+                    rgb_matrix_sethsv_noeeprom(HSV_OFF);
+                    kb_config.rgb_matrix_effect_enabled = false;
+                    eeconfig_update_kb(kb_config.raw); // write the custom keyboard settings to EEPROM
+
+                } else {
+                    // Get the mode and the color back from EEPROM
+                    rgb_matrix_reload_from_eeprom();
+                    kb_config.rgb_matrix_effect_enabled = true;
+                    eeconfig_update_kb(kb_config.raw); // write the custom keyboard settings to EEPROM
                 }
             }
-            if (!rgb_matrix_is_enabled()) {
-                rgb_matrix_set_flags(LED_FLAG_ALL);
-                rgb_matrix_enable();
-            }
-            return false;
+            return false;  // Skip all further processing of this key
+
+        // Disable the RGB matrix management if the rgb matrix effect is off
+        case RGB_MODE_FORWARD ... RGB_MODE_TWINKLE:  // For any of the RGB codes (see quantum/keycodes.h for reference)
+            // Continue further processing of this key only if the rgb matrix effect is on
+            return kb_config.rgb_matrix_effect_enabled;
+
+        default:
+            return true;  // Process all other keycodes normally
     }
-    return true;
 }
 
 bool rgb_matrix_indicators_advanced_kb(uint8_t led_min, uint8_t led_max) {
@@ -83,7 +132,7 @@ bool rgb_matrix_indicators_advanced_kb(uint8_t led_min, uint8_t led_max) {
     if (host_keyboard_led_state().caps_lock) {
         RGB_MATRIX_INDICATOR_SET_COLOR(CAPS_LOCK_LED_INDEX, rgb_on.r, rgb_on.g, rgb_on.b);
     } else {
-        if (!rgb_matrix_get_flags()) {
+        if (!kb_config.rgb_matrix_effect_enabled) {
             RGB_MATRIX_INDICATOR_SET_COLOR(CAPS_LOCK_LED_INDEX, rgb_off.r, rgb_off.g, rgb_off.b);
         }
     }
@@ -92,7 +141,7 @@ bool rgb_matrix_indicators_advanced_kb(uint8_t led_min, uint8_t led_max) {
     if (host_keyboard_led_state().num_lock) {
         RGB_MATRIX_INDICATOR_SET_COLOR(NUM_LOCK_LED_INDEX, rgb_on.r, rgb_on.g, rgb_on.b);
     } else {
-        if (!rgb_matrix_get_flags()) {
+        if (!kb_config.rgb_matrix_effect_enabled) {
             RGB_MATRIX_INDICATOR_SET_COLOR(NUM_LOCK_LED_INDEX, rgb_off.r, rgb_off.g, rgb_off.b);
         }
     }
@@ -101,7 +150,7 @@ bool rgb_matrix_indicators_advanced_kb(uint8_t led_min, uint8_t led_max) {
     if (host_keyboard_led_state().scroll_lock) {
         RGB_MATRIX_INDICATOR_SET_COLOR(SCROLL_LOCK_LED_INDEX, rgb_on.r, rgb_on.g, rgb_on.b);
     } else {
-        if (!rgb_matrix_get_flags()) {
+        if (!kb_config.rgb_matrix_effect_enabled) {
             RGB_MATRIX_INDICATOR_SET_COLOR(SCROLL_LOCK_LED_INDEX, rgb_off.r, rgb_off.g, rgb_off.b);
         }
     }

@@ -29,6 +29,11 @@ static const RGB cmy_col_seq[COL_SEQ_LEN] = {(RGB){RGB_CYAN}, (RGB){RGB_MAGENTA}
 extern void rgb_matrix_update_pwm_buffers(void);
 
 void led_notification(const RGB col_seq[]) {
+    if (!rgb_matrix_is_enabled()) {
+        // Ensure that the rgb matrix feature is enabled
+        rgb_matrix_enable_noeeprom();
+    }
+
     rgb_matrix_set_color_all(RGB_OFF);  // Set a single color to the whole LED matrix
     rgb_matrix_update_pwm_buffers();  // Force LED driver to process the last requests
     wait_ms(PRE_WAIT_MS);  // Blocking call
@@ -120,24 +125,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case QK_RBT:
             if (record->event.pressed) {
-                // On key pressed
+                // On key press
                 reboot_key_hold = true;
-                reboot_key_timer = record->event.time;  // Set timer
+                reboot_key_timer = record->event.time;  // Set the reboot key timer
             } else {
                 // On key release
                 reboot_key_hold = false;
-                reboot_key_timer = 0;  // Reset timer
+                reboot_key_timer = 0;  // Reset the reboot key timer
             }
             return false;  // Skip all further processing of this key
         case EE_CLR:
             if (record->event.pressed) {
-                // On key pressed
+                // On key press
                 reset_key_hold = true;
-                reset_key_timer = record->event.time;  // Set timer
+                reset_key_timer = record->event.time;  // Set the reset key timer
             } else {
                 // On key release
                 reset_key_hold = false;
-                reset_key_timer = 0;  // Reset timer
+                reset_key_timer = 0;  // Reset the reset key timer
             }
             return false;  // Skip all further processing of this key
         default:
@@ -150,7 +155,7 @@ void matrix_scan_user(void) {
     if (reboot_key_hold == true) {
         if (timer_elapsed(reboot_key_timer) > RESET_HOLD_TIME_MS) {  // ms
             reboot_key_hold = false;
-            reset_key_timer = 0;  // Reset timer
+            reboot_key_timer = 0;  // Reset the reboot key timer
 
             // LEDs notification before reboot (blocking call)
             led_notification(rgb_col_seq);
@@ -162,7 +167,7 @@ void matrix_scan_user(void) {
     if (reset_key_hold == true) {
         if (timer_elapsed(reset_key_timer) > RESET_HOLD_TIME_MS) {  // ms
             reset_key_hold = false;
-            reset_key_timer = 0;  // Reset timer
+            reset_key_timer = 0;  // Reset the reset key timer
 
             // LEDs notification before EEPROM reset (blocking call)
             led_notification(cmy_col_seq);
@@ -174,7 +179,7 @@ void matrix_scan_user(void) {
     }
 }
 
-// Default EEPROM settings after EEPROM reset: N-key rollover
+// Keymap level default EEPROM settings after EEPROM reset: N-key rollover
 void eeconfig_init_user(void) {
     // Enable NKRO immediately after reset
     keymap_config.raw = 0;  // All options disabled

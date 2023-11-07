@@ -18,8 +18,11 @@
 
 /* Default EEPROM settings after EEPROM reset: change the rgb matrix default */
 
-/* Select the default RGB matrix status (enable RGB feature by default) */
-// Setting this from config.h is not implemented: enabled by default
+// Possible values for 17 increments step in saturated range 0-255 (16 repeatable levels)
+// 0, 17, 34, 51, 68, 85, 102, 119, 136, 153, 170, 187, 204, 221, 238, 255
+//
+// Possible values for 15 increments step in saturated range 0-255 (18 repeatable levels)
+// 0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 180, 195, 210, 225, 240, 255
 
 /* Select the default RGB matrix effect */
 #ifdef ENABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE
@@ -27,14 +30,23 @@
 #endif
 
 /* Select the default RGB matrix color (not exactly pure hsv green) */
-#define RGB_MATRIX_HUE_STEP 8
-// This color ensures passing by pure hsv red considering the chosen hue step
-#define RGB_MATRIX_DEFAULT_HUE 80  // Close to green
-#define RGB_MATRIX_DEFAULT_SAT 255
-#define RGB_MATRIX_DEFAULT_VAL 255
+#define RGB_MATRIX_HUE_STEP 8       // Refined alternative: 4
+#define RGB_MATRIX_DEFAULT_HUE 80   // Reachable initial hue level, close to pure green
+// Hue cyclic range: this color ensures passing by pure hsv red considering the chosen hue step
+// We can only pass to a single pure color among the 6 pure hues r-g-b-c-m-y (pure red is chosen as the reference)
+
+#define RGB_MATRIX_SAT_STEP 15      // 18 repeatable levels
+#define RGB_MATRIX_DEFAULT_SAT 255  // Reachable initial saturation level
+
+#define RGB_MATRIX_VAL_STEP 15      // 18 repeatable levels
+#define RGB_MATRIX_DEFAULT_VAL 255  // Reachable initial value level
 
 /* Select the default RGB matrix effect speed (value from 0 to 255) */
-#define RGB_MATRIX_DEFAULT_SPD UINT8_MAX / 4
+#define RGB_MATRIX_SPD_STEP 15      // 18 repeatable levels
+#define RGB_MATRIX_DEFAULT_SPD 75   // Reachable initial value level
+
+/* Select the default RGB matrix status (enable RGB feature by default) */
+// Setting this from config.h is not implemented: enabled by default
 
 /* Select the default RGB matrix flag (disable RGB effect on all keys by default) */
 // Setting this from config.h is not implemented: all flags enabled by default
