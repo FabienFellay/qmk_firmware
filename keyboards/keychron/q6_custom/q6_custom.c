@@ -100,7 +100,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                 if (kb_config.rgb_matrix_effect_enabled) {
                     // Disable the rgb effect by setting the mode and the color without writing to the EEPROM
                     rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
-                    rgb_matrix_sethsv_noeeprom(HSV_OFF);
+                    rgb_matrix_sethsv_noeeprom(rgb_matrix_config.hsv.h, rgb_matrix_config.hsv.s, 0);
                     kb_config.rgb_matrix_effect_enabled = false;
                     eeconfig_update_kb(kb_config.raw); // write the custom keyboard settings to EEPROM
 
