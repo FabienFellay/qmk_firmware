@@ -16,6 +16,7 @@
 
 #include QMK_KEYBOARD_H
 #include "keychron_common.h"
+#include "q6_custom.h"
 
 // Constants, declarations and definitions for the LEDs notification
 #define BLINK_WAIT_MS 300
@@ -23,11 +24,13 @@
 #define POST_WAIT_MS 600
 #define COL_SEQ_LEN 3
 
+// LEDs notification color sequences
 static const RGB rgb_col_seq[COL_SEQ_LEN] = {(RGB){RGB_RED},  (RGB){RGB_GREEN},   (RGB){RGB_BLUE}};
 static const RGB cmy_col_seq[COL_SEQ_LEN] = {(RGB){RGB_CYAN}, (RGB){RGB_MAGENTA}, (RGB){RGB_YELLOW}};
 
 extern void rgb_matrix_update_pwm_buffers(void);
 
+// Soft reboot and EEPROM reset LEDs notification
 void led_notification(const RGB col_seq[]) {
     if (!rgb_matrix_is_enabled()) {
         // Ensure that the rgb matrix feature is enabled
@@ -55,13 +58,6 @@ void led_notification(const RGB col_seq[]) {
 }
 
 // clang-format off
-
-enum layers{
-  MAC_BASE,
-  MAC_FN,
-  WIN_BASE,
-  WIN_FN
-};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [MAC_BASE] = LAYOUT_iso_110(
@@ -118,6 +114,7 @@ static uint16_t reboot_key_timer = 0;
 static bool reset_key_hold = false;
 static uint16_t reset_key_timer = 0;
 
+// Manage soft reboot and EEPROM reset timers
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if(!process_record_keychron(keycode, record)) {
         return false;

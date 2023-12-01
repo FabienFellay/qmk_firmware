@@ -41,3 +41,9 @@
 
 /* Enable scroll-lock LED */
 #define SCROLL_LOCK_LED_INDEX 14
+
+/* Enable NKRO LED */
+#define NKRO_LED_INDEX 85
+
+/* Enable FN LED */
+#define FN_LED_INDEX 101

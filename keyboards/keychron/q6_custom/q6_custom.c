@@ -15,6 +15,7 @@
  */
 
 #include "quantum.h"
+#include "q6_custom.h"
 
 const matrix_row_t matrix_mask[] = {
     0b11111111111111111111,
@@ -39,21 +40,36 @@ bool dip_switch_update_kb(uint8_t index, bool active) {
 
 #endif // DIP_SWITCH_ENABLE
 
-#if defined(RGB_MATRIX_ENABLE) && (defined(CAPS_LOCK_LED_INDEX) || \
-    defined(NUM_LOCK_LED_INDEX) || defined(SCROLL_LOCK_LED_INDEX))
-#    define HOST_STATUS_KEYS
+// Manage indicators LEDs pre-processor directives
+#if defined(CAPS_LOCK_LED_INDEX) ||     \
+    defined(NUM_LOCK_LED_INDEX) ||      \
+    defined(SCROLL_LOCK_LED_INDEX)
+#    define HOST_INDICATOR_KEYS
 #endif
 
-#ifdef HOST_STATUS_KEYS
+#if defined(NKRO_LED_INDEX) ||  \
+    defined(FN_LED_INDEX)
+#    define FN_INDICATOR_KEYS
+#endif
 
-static const RGB rgb_on = (RGB){RGB_WHITE};
+#if defined(RGB_MATRIX_ENABLE) && (     \
+    defined(HOST_INDICATOR_KEYS) ||     \
+    defined(FN_INDICATOR_KEYS))
+#    define STATUS_INDICATOR_KEYS
+#endif
+
+#ifdef STATUS_INDICATOR_KEYS
+
+// Indicators LEDs colors
+static const RGB rgb_on  = (RGB){RGB_WHITE};
 static const RGB rgb_off = (RGB){RGB_OFF};
 
+// Custom structure to enable-disable the rgb matrix effects
 typedef union {
-  uint32_t raw;
-  struct {
-    bool    rgb_matrix_effect_enable : 1;
-  };
+    uint32_t raw;
+    struct {
+        bool    rgb_matrix_effect_enable : 1;
+    };
 } kb_config_t;
 
 kb_config_t kb_config;
@@ -81,6 +97,7 @@ void keyboard_post_init_kb(void) {
     // else the whole rgb config is automatically loaded from EEPROM
 }
 
+// Indicators LEDs controls
 bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
     if (!process_record_user(keycode, record)) {
         return false;
@@ -123,39 +140,50 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
+// Indicators LEDs helper function
+void rgb_matrix_indicator_switch(bool condition, uint8_t index, uint8_t led_min, uint8_t led_max) {
+    if (condition) {
+        RGB_MATRIX_INDICATOR_SET_COLOR(index, rgb_on.r, rgb_on.g, rgb_on.b);
+    } else {
+        if (!kb_config.rgb_matrix_effect_enable) {
+            RGB_MATRIX_INDICATOR_SET_COLOR(index, rgb_off.r, rgb_off.g, rgb_off.b);
+        }
+    }
+}
+
+// Process indicators LEDs
 bool rgb_matrix_indicators_advanced_kb(uint8_t led_min, uint8_t led_max) {
     if (!rgb_matrix_indicators_advanced_user(led_min, led_max)) {
         return false;
     }
-    // RGB_MATRIX_INDICATOR_SET_COLOR(index, red, green, blue);
+
 #    if defined(CAPS_LOCK_LED_INDEX)
-    if (host_keyboard_led_state().caps_lock) {
-        RGB_MATRIX_INDICATOR_SET_COLOR(CAPS_LOCK_LED_INDEX, rgb_on.r, rgb_on.g, rgb_on.b);
-    } else {
-        if (!kb_config.rgb_matrix_effect_enable) {
-            RGB_MATRIX_INDICATOR_SET_COLOR(CAPS_LOCK_LED_INDEX, rgb_off.r, rgb_off.g, rgb_off.b);
-        }
-    }
+    rgb_matrix_indicator_switch(host_keyboard_led_state().caps_lock, CAPS_LOCK_LED_INDEX, led_min, led_max);
 #    endif // CAPS_LOCK_LED_INDEX
+
 #    if defined(NUM_LOCK_LED_INDEX)
-    if (host_keyboard_led_state().num_lock) {
-        RGB_MATRIX_INDICATOR_SET_COLOR(NUM_LOCK_LED_INDEX, rgb_on.r, rgb_on.g, rgb_on.b);
-    } else {
-        if (!kb_config.rgb_matrix_effect_enable) {
-            RGB_MATRIX_INDICATOR_SET_COLOR(NUM_LOCK_LED_INDEX, rgb_off.r, rgb_off.g, rgb_off.b);
-        }
-    }
+    rgb_matrix_indicator_switch(host_keyboard_led_state().num_lock, NUM_LOCK_LED_INDEX, led_min, led_max);
 #    endif // NUM_LOCK_LED_INDEX
+
 #    if defined(SCROLL_LOCK_LED_INDEX)
-    if (host_keyboard_led_state().scroll_lock) {
-        RGB_MATRIX_INDICATOR_SET_COLOR(SCROLL_LOCK_LED_INDEX, rgb_on.r, rgb_on.g, rgb_on.b);
-    } else {
-        if (!kb_config.rgb_matrix_effect_enable) {
-            RGB_MATRIX_INDICATOR_SET_COLOR(SCROLL_LOCK_LED_INDEX, rgb_off.r, rgb_off.g, rgb_off.b);
-        }
-    }
+    rgb_matrix_indicator_switch(host_keyboard_led_state().scroll_lock, SCROLL_LOCK_LED_INDEX, led_min, led_max);
 #    endif // SCROLL_LOCK_LED_INDEX
+
+#    ifdef FN_INDICATOR_KEYS
+
+    const bool fn_layer_on = (layer_state_is(MAC_FN) || layer_state_is(WIN_FN));
+
+#        if defined(FN_LED_INDEX)
+    rgb_matrix_indicator_switch(fn_layer_on, FN_LED_INDEX, led_min, led_max);
+#        endif // FN_LED_INDEX
+
+#        if defined(NKRO_LED_INDEX)
+    rgb_matrix_indicator_switch(fn_layer_on && keymap_config.nkro, NKRO_LED_INDEX, led_min, led_max);
+#        endif // NKRO_LED_INDEX
+
+#    endif // FN_INDICATOR_KEYS
+
     return true;
 }
 
-#endif // HOST_STATUS_KEYS
+#endif // STATUS_INDICATOR_KEYS
