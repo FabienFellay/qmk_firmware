@@ -48,7 +48,8 @@ bool dip_switch_update_kb(uint8_t index, bool active) {
 #endif
 
 #if defined(NKRO_LED_INDEX) ||  \
-    defined(FN_LED_INDEX)
+    defined(FN_LED_INDEX) ||    \
+    defined(RGB_MODE_LED_INDEX)
 #    define FN_INDICATOR_KEYS
 #endif
 
@@ -180,6 +181,10 @@ bool rgb_matrix_indicators_advanced_kb(uint8_t led_min, uint8_t led_max) {
 #        if defined(NKRO_LED_INDEX)
     rgb_matrix_indicator_switch(fn_layer_on && keymap_config.nkro, NKRO_LED_INDEX, led_min, led_max);
 #        endif // NKRO_LED_INDEX
+
+#        if defined(RGB_MODE_LED_INDEX)
+    rgb_matrix_indicator_switch(fn_layer_on && kb_config.rgb_matrix_effect_enable, RGB_MODE_LED_INDEX, led_min, led_max);
+#        endif // RGB_MODE_LED_INDEX
 
 #    endif // FN_INDICATOR_KEYS
 
