@@ -33,20 +33,23 @@
 /* Encoder Configuration */
 #define ENCODER_DEFAULT_POS 0x3
 
-/* Enable caps-lock indicator LED */
+/* Enable caps-lock unconditional indicator LED */
 #define CAPS_LOCK_LED_INDEX 60
 
-/* Enable num-lock indicator LED */
+/* Enable num-lock unconditional indicator LED */
 #define NUM_LOCK_LED_INDEX 37
 
-/* Enable scroll-lock indicator LED */
+/* Enable scroll-lock unconditional indicator LED */
 #define SCROLL_LOCK_LED_INDEX 14
 
-/* Enable NKRO indicator LED */
+/* Enable NKRO indicator LED on FN press */
 #define NKRO_LED_INDEX 85
 
-/* Enable FN indicator LED */
+/* Enable FN indicator LED on FN press */
 #define FN_LED_INDEX 101
 
-/* Enable RGB mode indicator LEDs */
+/* Enable RGB mode on/off indicator LED on FN press */
 #define RGB_MODE_LED_INDEX 15
+
+/* Enable selected RGB mode indicator LEDs on FN press */
+#define SELECTED_RGB_MODE_LED

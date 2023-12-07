@@ -47,9 +47,10 @@ bool dip_switch_update_kb(uint8_t index, bool active) {
 #    define HOST_INDICATOR_KEYS
 #endif
 
-#if defined(NKRO_LED_INDEX) ||  \
-    defined(FN_LED_INDEX) ||    \
-    defined(RGB_MODE_LED_INDEX)
+#if defined(NKRO_LED_INDEX) ||      \
+    defined(FN_LED_INDEX) ||        \
+    defined(RGB_MODE_LED_INDEX) ||  \
+    defined(SELECTED_RGB_MODE_LED)
 #    define FN_INDICATOR_KEYS
 #endif
 
@@ -142,15 +143,50 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
 }
 
 // Indicators LEDs helper function
-void rgb_matrix_indicator_switch(bool condition, uint8_t index, uint8_t led_min, uint8_t led_max) {
+void rgb_matrix_indicators_switch_key(bool condition, uint8_t index, uint8_t led_min, uint8_t led_max) {
     if (condition) {
         RGB_MATRIX_INDICATOR_SET_COLOR(index, rgb_on.r, rgb_on.g, rgb_on.b);
-    } else {
-        if (!kb_config.rgb_matrix_effect_enable) {
-            RGB_MATRIX_INDICATOR_SET_COLOR(index, rgb_off.r, rgb_off.g, rgb_off.b);
-        }
+    } else if (!kb_config.rgb_matrix_effect_enable) {
+        RGB_MATRIX_INDICATOR_SET_COLOR(index, rgb_off.r, rgb_off.g, rgb_off.b);
+    }  // else: the selected effect will repaint the key
+}
+
+// Selected mode indicators LEDs
+#    ifdef SELECTED_RGB_MODE_LED
+
+// Units and tens index ranges
+static const uint8_t mode_units_index_range[10] = {
+    30, 21, 22, 23, 24, 25, 26, 27, 28, 29
+};
+static const uint8_t mode_tens_index_range[10] = {
+    106, 92, 93, 94, 74, 75, 76, 57, 58, 59
+};
+
+// Selected mode indicators LEDs helper function
+void rgb_matrix_indicators_selected_mode(
+    uint8_t mode,
+    bool additional_condition,
+    const uint8_t units_index[10],
+    const uint8_t tens_index[10],
+    uint8_t led_min,
+    uint8_t led_max) {
+    // Get units and tens from the mode (valid for mode < 100 and then wrap back to 0)
+    const uint8_t units = mode % 10;
+    const uint8_t tens = (mode / 10) % 10;
+
+    // Units range scanning
+    for (uint8_t i = 0; i < 10; ++i) {
+        const bool condition = ((i == units) && additional_condition);
+        rgb_matrix_indicators_switch_key(condition, units_index[i], led_min, led_max);
+    }
+
+    // Tens range scanning
+    for (uint8_t i = 0; i < 10; ++i) {
+        const bool condition = ((i == tens) && additional_condition);
+        rgb_matrix_indicators_switch_key(condition, tens_index[i], led_min, led_max);
     }
 }
+#    endif // SELECTED_RGB_MODE_LED
 
 // Process indicators LEDs
 bool rgb_matrix_indicators_advanced_kb(uint8_t led_min, uint8_t led_max) {
@@ -158,33 +194,43 @@ bool rgb_matrix_indicators_advanced_kb(uint8_t led_min, uint8_t led_max) {
         return false;
     }
 
-#    if defined(CAPS_LOCK_LED_INDEX)
-    rgb_matrix_indicator_switch(host_keyboard_led_state().caps_lock, CAPS_LOCK_LED_INDEX, led_min, led_max);
+#    ifdef CAPS_LOCK_LED_INDEX
+    rgb_matrix_indicators_switch_key(host_keyboard_led_state().caps_lock, CAPS_LOCK_LED_INDEX, led_min, led_max);
 #    endif // CAPS_LOCK_LED_INDEX
 
-#    if defined(NUM_LOCK_LED_INDEX)
-    rgb_matrix_indicator_switch(host_keyboard_led_state().num_lock, NUM_LOCK_LED_INDEX, led_min, led_max);
+#    ifdef NUM_LOCK_LED_INDEX
+    rgb_matrix_indicators_switch_key(host_keyboard_led_state().num_lock, NUM_LOCK_LED_INDEX, led_min, led_max);
 #    endif // NUM_LOCK_LED_INDEX
 
-#    if defined(SCROLL_LOCK_LED_INDEX)
-    rgb_matrix_indicator_switch(host_keyboard_led_state().scroll_lock, SCROLL_LOCK_LED_INDEX, led_min, led_max);
+#    ifdef SCROLL_LOCK_LED_INDEX
+    rgb_matrix_indicators_switch_key(host_keyboard_led_state().scroll_lock, SCROLL_LOCK_LED_INDEX, led_min, led_max);
 #    endif // SCROLL_LOCK_LED_INDEX
 
 #    ifdef FN_INDICATOR_KEYS
 
     const bool fn_layer_on = (layer_state_is(MAC_FN) || layer_state_is(WIN_FN));
 
-#        if defined(FN_LED_INDEX)
-    rgb_matrix_indicator_switch(fn_layer_on, FN_LED_INDEX, led_min, led_max);
+#        ifdef FN_LED_INDEX
+    rgb_matrix_indicators_switch_key(fn_layer_on, FN_LED_INDEX, led_min, led_max);
 #        endif // FN_LED_INDEX
 
-#        if defined(NKRO_LED_INDEX)
-    rgb_matrix_indicator_switch(fn_layer_on && keymap_config.nkro, NKRO_LED_INDEX, led_min, led_max);
+#        ifdef NKRO_LED_INDEX
+    rgb_matrix_indicators_switch_key(fn_layer_on && keymap_config.nkro, NKRO_LED_INDEX, led_min, led_max);
 #        endif // NKRO_LED_INDEX
 
-#        if defined(RGB_MODE_LED_INDEX)
-    rgb_matrix_indicator_switch(fn_layer_on && kb_config.rgb_matrix_effect_enable, RGB_MODE_LED_INDEX, led_min, led_max);
+#        ifdef RGB_MODE_LED_INDEX
+    rgb_matrix_indicators_switch_key(fn_layer_on && kb_config.rgb_matrix_effect_enable, RGB_MODE_LED_INDEX, led_min, led_max);
 #        endif // RGB_MODE_LED_INDEX
+
+#        ifdef SELECTED_RGB_MODE_LED
+    rgb_matrix_indicators_selected_mode(
+        rgb_matrix_config.mode,
+        fn_layer_on && kb_config.rgb_matrix_effect_enable,
+        mode_units_index_range,
+        mode_tens_index_range,
+        led_min,
+        led_max);
+#        endif // SELECTED_RGB_MODE_LED
 
 #    endif // FN_INDICATOR_KEYS
 
