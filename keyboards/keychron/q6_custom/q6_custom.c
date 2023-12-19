@@ -38,7 +38,7 @@ bool dip_switch_update_kb(uint8_t index, bool active) {
     return true;
 }
 
-#endif // DIP_SWITCH_ENABLE
+#endif  // DIP_SWITCH_ENABLE
 
 // Manage indicators LEDs pre-processor directives
 #if defined(CAPS_LOCK_LED_INDEX) ||     \
@@ -121,13 +121,13 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                     rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
                     rgb_matrix_sethsv_noeeprom(rgb_matrix_config.hsv.h, rgb_matrix_config.hsv.s, 0);
                     kb_config.rgb_matrix_effect_enable = false;
-                    eeconfig_update_kb(kb_config.raw); // write the custom keyboard settings to EEPROM
+                    eeconfig_update_kb(kb_config.raw);  // write the custom keyboard settings to EEPROM
 
                 } else {
                     // Get the mode and the color back from EEPROM
                     rgb_matrix_reload_from_eeprom();
                     kb_config.rgb_matrix_effect_enable = true;
-                    eeconfig_update_kb(kb_config.raw); // write the custom keyboard settings to EEPROM
+                    eeconfig_update_kb(kb_config.raw);  // write the custom keyboard settings to EEPROM
                 }
             }
             return false;  // Skip all further processing of this key
@@ -154,28 +154,30 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
 #    ifdef SELECTED_RGB_MODE_LED
 
 // Units and tens index ranges
-static const uint8_t mode_units_index_range[10] = {
+#define NUM_BASE 10
+
+static const uint8_t mode_units_index_range[NUM_BASE] = {
     106, 92, 93, 94, 74, 75, 76, 57, 58, 59  // Units on the numeric keypad
 };
-static const uint8_t mode_tens_index_range[10] = {
+static const uint8_t mode_tens_index_range[NUM_BASE] = {
     30, 21, 22, 23, 24, 25, 26, 27, 28, 29  // Tens on the main numeric row
 };
 
 // Selected mode indicators LEDs helper function-like macro
 #define RGB_MATRIX_INDICATOR_SELECTED_MODE(mode, condition, units_index, tens_index)        \
     /* Get units and tens from the mode (valid for mode < 100 and then wrap back to 0) */   \
-    const uint8_t units = mode % 10;                                                        \
-    const uint8_t tens = (mode / 10) % 10;                                                  \
+    const uint8_t units = mode % NUM_BASE;                                                  \
+    const uint8_t tens = (mode / NUM_BASE) % NUM_BASE;                                      \
     /* Units range scanning */                                                              \
-    for (uint8_t i = 0; i < 10; ++i) {                                                      \
+    for (uint8_t i = 0; i < NUM_BASE; ++i) {                                                \
         RGB_MATRIX_INDICATOR_SWITCH_KEY((i == units) && condition, units_index[i]);         \
     }                                                                                       \
     /* Tens range scanning */                                                               \
-    for (uint8_t i = 0; i < 10; ++i) {                                                      \
+    for (uint8_t i = 0; i < NUM_BASE; ++i) {                                                \
         RGB_MATRIX_INDICATOR_SWITCH_KEY((i == tens) && condition, tens_index[i]);           \
     }
 
-#    endif // SELECTED_RGB_MODE_LED
+#    endif  // SELECTED_RGB_MODE_LED
 
 // Process indicators LEDs
 bool rgb_matrix_indicators_advanced_kb(uint8_t led_min, uint8_t led_max) {
@@ -185,15 +187,15 @@ bool rgb_matrix_indicators_advanced_kb(uint8_t led_min, uint8_t led_max) {
 
 #    ifdef CAPS_LOCK_LED_INDEX
     RGB_MATRIX_INDICATOR_SWITCH_KEY(host_keyboard_led_state().caps_lock, CAPS_LOCK_LED_INDEX);
-#    endif // CAPS_LOCK_LED_INDEX
+#    endif  // CAPS_LOCK_LED_INDEX
 
 #    ifdef NUM_LOCK_LED_INDEX
     RGB_MATRIX_INDICATOR_SWITCH_KEY(host_keyboard_led_state().num_lock, NUM_LOCK_LED_INDEX);
-#    endif // NUM_LOCK_LED_INDEX
+#    endif  // NUM_LOCK_LED_INDEX
 
 #    ifdef SCROLL_LOCK_LED_INDEX
     RGB_MATRIX_INDICATOR_SWITCH_KEY(host_keyboard_led_state().scroll_lock, SCROLL_LOCK_LED_INDEX);
-#    endif // SCROLL_LOCK_LED_INDEX
+#    endif  // SCROLL_LOCK_LED_INDEX
 
 #    ifdef FN_INDICATOR_KEYS
 
@@ -201,15 +203,15 @@ bool rgb_matrix_indicators_advanced_kb(uint8_t led_min, uint8_t led_max) {
 
 #        ifdef FN_LED_INDEX
     RGB_MATRIX_INDICATOR_SWITCH_KEY(fn_layer_on, FN_LED_INDEX);
-#        endif // FN_LED_INDEX
+#        endif  // FN_LED_INDEX
 
 #        ifdef NKRO_LED_INDEX
     RGB_MATRIX_INDICATOR_SWITCH_KEY(fn_layer_on && keymap_config.nkro, NKRO_LED_INDEX);
-#        endif // NKRO_LED_INDEX
+#        endif  // NKRO_LED_INDEX
 
 #        ifdef RGB_MODE_LED_INDEX
     RGB_MATRIX_INDICATOR_SWITCH_KEY(fn_layer_on && kb_config.rgb_matrix_effect_enable, RGB_MODE_LED_INDEX);
-#        endif // RGB_MODE_LED_INDEX
+#        endif  // RGB_MODE_LED_INDEX
 
 #        ifdef SELECTED_RGB_MODE_LED
     RGB_MATRIX_INDICATOR_SELECTED_MODE(
@@ -217,11 +219,11 @@ bool rgb_matrix_indicators_advanced_kb(uint8_t led_min, uint8_t led_max) {
         fn_layer_on && kb_config.rgb_matrix_effect_enable,
         mode_units_index_range,
         mode_tens_index_range);
-#        endif // SELECTED_RGB_MODE_LED
+#        endif  // SELECTED_RGB_MODE_LED
 
-#    endif // FN_INDICATOR_KEYS
+#    endif  // FN_INDICATOR_KEYS
 
     return true;
 }
 
-#endif // STATUS_INDICATOR_KEYS
+#endif  // STATUS_INDICATOR_KEYS
