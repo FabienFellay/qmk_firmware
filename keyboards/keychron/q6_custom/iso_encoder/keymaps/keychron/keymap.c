@@ -68,7 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LSFT,  KC_NUBS,  KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,              KC_RSFT,              KC_UP,              KC_P1,    KC_P2,    KC_P3,
         KC_LCTL,  KC_LOPTN, KC_LCMMD,                               KC_SPC,                                 KC_RCMMD, KC_ROPTN, MO(MAC_FN), KC_RCTL,    KC_LEFT,  KC_DOWN,  KC_RGHT,  KC_P0,              KC_PDOT,  KC_PENT),
     [MAC_FN] = LAYOUT_iso_110(
-        _______,  KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,     RGB_TOG,    _______,  _______,  RGB_TOG,  _______,  _______,  _______,  _______,
+        _______,  KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,     RGB_TOG,    _______,  _______,  RGB_TOG,  KC_WSCH,  KC_MAIL,  KC_CALC,  KC_MYCM,
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    QK_RBT,     _______,  _______,  _______,  _______,  _______,  _______,  _______,
         RGB_TOG,  RGB_MOD,  RGB_VAI,  RGB_HUI,  RGB_SAI,  RGB_SPI,  _______,  _______,  _______,  _______,  _______,  _______,  _______,                EE_CLR,   _______,  _______,  KC_BTN1,  KC_MS_U,  KC_BTN2,
         _______,  RGB_RMOD, RGB_VAD,  RGB_HUD,  RGB_SAD,  RGB_SPD,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    _______,                                  KC_MS_L,  KC_BTN3,  KC_MS_R,  KC_BTN8,
@@ -82,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LSFT,  KC_NUBS,  KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,              KC_RSFT,              KC_UP,              KC_P1,    KC_P2,    KC_P3,
         KC_LCTL,  KC_LWIN,  KC_LALT,                                KC_SPC,                                 KC_RALT,  KC_RWIN,  MO(WIN_FN), KC_RCTL,    KC_LEFT,  KC_DOWN,  KC_RGHT,  KC_P0,              KC_PDOT,  KC_PENT),
     [WIN_FN] = LAYOUT_iso_110(
-        _______,  KC_BRID,  KC_BRIU,  KC_TASK,  KC_FLXP,  RGB_VAD,  RGB_VAI,  KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_MUTE,  KC_VOLD,  KC_VOLU,    RGB_TOG,    _______,  _______,  RGB_TOG,  _______,  _______,  _______,  _______,
+        _______,  KC_BRID,  KC_BRIU,  KC_TASK,  KC_FLXP,  RGB_VAD,  RGB_VAI,  KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_MUTE,  KC_VOLD,  KC_VOLU,    RGB_TOG,    _______,  _______,  RGB_TOG,  KC_F13,   KC_F14,   KC_F15,   KC_F16,
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    QK_RBT,     _______,  _______,  _______,  _______,  _______,  _______,  _______,
         RGB_TOG,  RGB_MOD,  RGB_VAI,  RGB_HUI,  RGB_SAI,  RGB_SPI,  _______,  _______,  _______,  _______,  _______,  _______,  _______,                EE_CLR,   _______,  _______,  KC_BTN1,  KC_MS_U,  KC_BTN2,
         _______,  RGB_RMOD, RGB_VAD,  RGB_HUD,  RGB_SAD,  RGB_SPD,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    _______,                                  KC_MS_L,  KC_BTN3,  KC_MS_R,  KC_BTN8,
@@ -119,6 +119,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if(!process_record_keychron(keycode, record)) {
         return false;
     }
+
     switch (keycode) {
         case QK_RBT:
             if (record->event.pressed) {
@@ -131,6 +132,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 reboot_key_timer = 0;  // Reset the reboot key timer
             }
             return false;  // Skip all further processing of this key
+
         case EE_CLR:
             if (record->event.pressed) {
                 // On key press
@@ -142,6 +144,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 reset_key_timer = 0;  // Reset the reset key timer
             }
             return false;  // Skip all further processing of this key
+
         default:
             return true;  // Process all other keycodes normally
     }
@@ -161,6 +164,7 @@ void matrix_scan_user(void) {
             return;
         }
     }
+
     if (reset_key_hold == true) {
         if (timer_elapsed(reset_key_timer) > RESET_HOLD_TIME_MS) {  // ms
             reset_key_hold = false;
