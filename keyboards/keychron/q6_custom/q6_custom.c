@@ -113,6 +113,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                     // Ensure that the rgb matrix feature is enabled with all flags
                     rgb_matrix_set_flags(LED_FLAG_ALL);
                     rgb_matrix_enable();
+                    eeconfig_update_rgb_matrix();  // Force update rgb EEPROM now
                 }
 
                 // Toggle rgb matrix effect
