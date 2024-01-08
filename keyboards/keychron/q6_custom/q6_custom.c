@@ -113,7 +113,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                     // Ensure that the rgb matrix feature is enabled with all flags
                     rgb_matrix_set_flags(LED_FLAG_ALL);
                     rgb_matrix_enable();
-                    eeconfig_update_rgb_matrix();  // Force update rgb EEPROM now
+                    eeconfig_update_rgb_matrix();  // Force writing the updated rgb EEPROM now (flush)
                 }
 
                 // Toggle rgb matrix effect
@@ -147,7 +147,9 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
 #define RGB_MATRIX_INDICATOR_SWITCH_KEY(condition, index)                       \
     if (condition) {                                                            \
         RGB_MATRIX_INDICATOR_SET_COLOR(index, rgb_on.r, rgb_on.g, rgb_on.b);    \
-    } else if (!kb_config.rgb_matrix_effect_enable) {                           \
+    } else if (                                                                 \
+        !(kb_config.rgb_matrix_effect_enable &&                                 \
+        HAS_ANY_FLAGS(g_led_config.flags[index], rgb_matrix_get_flags()))) {    \
         RGB_MATRIX_INDICATOR_SET_COLOR(index, rgb_off.r, rgb_off.g, rgb_off.b); \
     }  // else: the selected effect will repaint the key
 
