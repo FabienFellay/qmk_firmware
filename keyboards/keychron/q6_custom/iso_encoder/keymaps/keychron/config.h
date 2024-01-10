@@ -27,7 +27,7 @@
 /* Select the default RGB matrix effect */
 #ifdef ENABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE
 #    define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_SOLID_REACTIVE_SIMPLE
-#endif
+#endif  // ENABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE
 
 /* Select the default RGB matrix color (not exactly pure hsv green) */
 #define RGB_MATRIX_HUE_STEP 8       // Refined alternative: 4
@@ -45,8 +45,16 @@
 #define RGB_MATRIX_SPD_STEP 15      // 18 repeatable levels
 #define RGB_MATRIX_DEFAULT_SPD 75   // Reachable initial value level
 
-/* Select the default RGB matrix status (enable RGB feature by default) */
-// Setting this from config.h is not implemented: enabled by default
+/* Select the default RGB matrix status */
+#ifdef STATUS_INDICATOR_KEYS
+// Enable RGB feature by default to allow indicator LEDs
+#    define RGB_MATRIX_DEFAULT_ON true
+// Disable RGB effect by default just after an EEPROM reset
+#    define RGB_MATRIX_EFFECT_DEFAULT_ON false
+#else
+// Disable RGB effect by default just after an EEPROM reset
+#    define RGB_MATRIX_DEFAULT_ON false
+#endif  // STATUS_INDICATOR_KEYS
 
-/* Select the default RGB matrix flag (disable RGB effect on all keys by default) */
-// Setting this from config.h is not implemented: all flags enabled by default
+/* Select the default RGB matrix flag */
+// Setting this from config.h is not implemented yet: all flags enabled by default

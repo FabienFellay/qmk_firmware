@@ -23,3 +23,11 @@ enum layers{
   WIN_BASE,
   WIN_FN
 };
+
+#ifdef STATUS_INDICATOR_KEYS
+
+#    ifndef RGB_MATRIX_EFFECT_DEFAULT_ON
+#        define RGB_MATRIX_EFFECT_DEFAULT_ON true
+#    endif  // RGB_MATRIX_EFFECT_DEFAULT_ON
+
+#endif  // STATUS_INDICATOR_KEYS

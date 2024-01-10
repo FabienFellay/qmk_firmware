@@ -40,26 +40,6 @@ bool dip_switch_update_kb(uint8_t index, bool active) {
 
 #endif  // DIP_SWITCH_ENABLE
 
-// Manage indicators LEDs pre-processor directives
-#if defined(CAPS_LOCK_LED_INDEX) ||     \
-    defined(NUM_LOCK_LED_INDEX) ||      \
-    defined(SCROLL_LOCK_LED_INDEX)
-#    define HOST_INDICATOR_KEYS
-#endif
-
-#if defined(NKRO_LED_INDEX) ||      \
-    defined(FN_LED_INDEX) ||        \
-    defined(RGB_MODE_LED_INDEX) ||  \
-    defined(SELECTED_RGB_MODE_LED)
-#    define FN_INDICATOR_KEYS
-#endif
-
-#if defined(RGB_MATRIX_ENABLE) && (     \
-    defined(HOST_INDICATOR_KEYS) ||     \
-    defined(FN_INDICATOR_KEYS))
-#    define STATUS_INDICATOR_KEYS
-#endif
-
 #ifdef STATUS_INDICATOR_KEYS
 
 // Indicators LEDs colors
@@ -79,7 +59,7 @@ kb_config_t kb_config;
 // Keyboard level default EEPROM settings after EEPROM reset
 void eeconfig_init_kb(void) {
     kb_config.raw = 0;
-    kb_config.rgb_matrix_effect_enable = false;  // We want the rgb effect disabled by default
+    kb_config.rgb_matrix_effect_enable = RGB_MATRIX_EFFECT_DEFAULT_ON;
     eeconfig_update_kb(kb_config.raw);  // Write default value to EEPROM
 
     eeconfig_init_user();
@@ -144,7 +124,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
 }
 
 // Indicators LEDs helper function-like macro
-#define RGB_MATRIX_INDICATOR_SWITCH_KEY(condition, index)                       \
+#    define RGB_MATRIX_INDICATOR_SWITCH_KEY(condition, index)                   \
     if (condition) {                                                            \
         RGB_MATRIX_INDICATOR_SET_COLOR(index, rgb_on.r, rgb_on.g, rgb_on.b);    \
     } else if (                                                                 \
@@ -157,7 +137,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
 #    ifdef SELECTED_RGB_MODE_LED
 
 // Units and tens index ranges
-#define NUM_BASE 10
+#        define NUM_BASE 10
 
 static const uint8_t mode_units_index_range[NUM_BASE] = {
     106, 92, 93, 94, 74, 75, 76, 57, 58, 59  // Units on the numeric keypad
@@ -167,17 +147,17 @@ static const uint8_t mode_tens_index_range[NUM_BASE] = {
 };
 
 // Selected mode indicators LEDs helper function-like macro
-#define RGB_MATRIX_INDICATOR_SELECTED_MODE(mode, condition, units_index, tens_index)        \
-    /* Get units and tens from the mode (valid for mode < 100 and then wrap back to 0) */   \
-    const uint8_t units = mode % NUM_BASE;                                                  \
-    const uint8_t tens = (mode / NUM_BASE) % NUM_BASE;                                      \
-    /* Units range scanning */                                                              \
-    for (uint8_t i = 0; i < NUM_BASE; ++i) {                                                \
-        RGB_MATRIX_INDICATOR_SWITCH_KEY((i == units) && condition, units_index[i]);         \
-    }                                                                                       \
-    /* Tens range scanning */                                                               \
-    for (uint8_t i = 0; i < NUM_BASE; ++i) {                                                \
-        RGB_MATRIX_INDICATOR_SWITCH_KEY((i == tens) && condition, tens_index[i]);           \
+#        define RGB_MATRIX_INDICATOR_SELECTED_MODE(mode, condition, units_index, tens_index)    \
+    /* Get units and tens from the mode (valid for mode < 100 and then wrap back to 0) */       \
+    const uint8_t units = mode % NUM_BASE;                                                      \
+    const uint8_t tens = (mode / NUM_BASE) % NUM_BASE;                                          \
+    /* Units range scanning */                                                                  \
+    for (uint8_t i = 0; i < NUM_BASE; ++i) {                                                    \
+        RGB_MATRIX_INDICATOR_SWITCH_KEY((i == units) && condition, units_index[i]);             \
+    }                                                                                           \
+    /* Tens range scanning */                                                                   \
+    for (uint8_t i = 0; i < NUM_BASE; ++i) {                                                    \
+        RGB_MATRIX_INDICATOR_SWITCH_KEY((i == tens) && condition, tens_index[i]);               \
     }
 
 #    endif  // SELECTED_RGB_MODE_LED

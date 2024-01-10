@@ -53,3 +53,23 @@
 
 /* Enable selected RGB mode indicator LEDs on FN press */
 #define SELECTED_RGB_MODE_LED
+
+// Manage indicators LEDs pre-processor directives
+#if defined(CAPS_LOCK_LED_INDEX) || \
+    defined(NUM_LOCK_LED_INDEX) ||  \
+    defined(SCROLL_LOCK_LED_INDEX)
+#    define HOST_INDICATOR_KEYS
+#endif
+
+#if defined(NKRO_LED_INDEX) ||      \
+    defined(FN_LED_INDEX) ||        \
+    defined(RGB_MODE_LED_INDEX) ||  \
+    defined(SELECTED_RGB_MODE_LED)
+#    define FN_INDICATOR_KEYS
+#endif
+
+#if defined(RGB_MATRIX_ENABLE) && ( \
+    defined(HOST_INDICATOR_KEYS) || \
+    defined(FN_INDICATOR_KEYS))
+#    define STATUS_INDICATOR_KEYS
+#endif
