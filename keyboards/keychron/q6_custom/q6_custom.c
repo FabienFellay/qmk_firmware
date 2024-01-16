@@ -46,11 +46,13 @@ bool dip_switch_update_kb(uint8_t index, bool active) {
 static const RGB rgb_on  = (RGB){RGB_WHITE};
 static const RGB rgb_off = (RGB){RGB_OFF};
 
-// Custom structure to enable-disable the rgb matrix effects
+// Custom structure to enable-disable the rgb matrix effects while preserving the indicators
 typedef union {
     uint32_t raw;
-    struct {
+    struct PACKED {
         bool    rgb_matrix_effect_enable : 1;
+        uint8_t mode : 7;
+        uint8_t value;
     };
 } kb_config_t;
 
@@ -59,7 +61,11 @@ kb_config_t kb_config;
 // Keyboard level default EEPROM settings after EEPROM reset
 void eeconfig_init_kb(void) {
     kb_config.raw = 0;
+
     kb_config.rgb_matrix_effect_enable = RGB_MATRIX_EFFECT_DEFAULT_ON;
+    kb_config.mode = RGB_MATRIX_DEFAULT_MODE;
+    kb_config.value = RGB_MATRIX_DEFAULT_VAL;
+
     eeconfig_update_kb(kb_config.raw);  // Write default value to EEPROM
 
     eeconfig_init_user();
@@ -98,17 +104,24 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
 
                 // Toggle rgb matrix effect
                 if (kb_config.rgb_matrix_effect_enable) {
-                    // Disable the rgb effect by setting the mode and the color without writing to the EEPROM
-                    rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
-                    rgb_matrix_sethsv_noeeprom(rgb_matrix_config.hsv.h, rgb_matrix_config.hsv.s, 0);
+                    // Store the mode and the color hsv value in the custom keyboard settings
                     kb_config.rgb_matrix_effect_enable = false;
-                    eeconfig_update_kb(kb_config.raw);  // write the custom keyboard settings to EEPROM
+                    kb_config.mode = rgb_matrix_get_mode();
+                    kb_config.value = rgb_matrix_get_val();
+                    eeconfig_update_kb(kb_config.raw);  // Write the custom keyboard settings to EEPROM
+
+                    // Disable the rgb effect by setting the mode and the color hsv value without writing to the EEPROM
+                    rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
+                    rgb_matrix_sethsv_noeeprom(rgb_matrix_get_hue(), rgb_matrix_get_sat(), 0);
 
                 } else {
-                    // Get the mode and the color back from EEPROM
-                    rgb_matrix_reload_from_eeprom();
+                    // Enable the rgb effect by getting the mode and the color hsv value back from the custom keyboard settings
+                    rgb_matrix_mode(kb_config.mode);
+                    rgb_matrix_sethsv(rgb_matrix_get_hue(), rgb_matrix_get_sat(), kb_config.value);
+
+                    // Change rgb matrix effect
                     kb_config.rgb_matrix_effect_enable = true;
-                    eeconfig_update_kb(kb_config.raw);  // write the custom keyboard settings to EEPROM
+                    eeconfig_update_kb(kb_config.raw);  // Write the custom keyboard settings to EEPROM
                 }
             }
             return false;  // Skip all further processing of this key
