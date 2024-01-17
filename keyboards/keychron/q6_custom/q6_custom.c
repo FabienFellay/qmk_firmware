@@ -181,6 +181,18 @@ bool rgb_matrix_indicators_advanced_kb(uint8_t led_min, uint8_t led_max) {
         return false;
     }
 
+    // Prevent VIA from bypassing the mode and the color hsv value when the rgb effect is disabled
+    if (!kb_config.rgb_matrix_effect_enable) {
+        if (rgb_matrix_get_mode() != RGB_MATRIX_SOLID_COLOR) {
+            rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
+        }
+
+        if (rgb_matrix_get_val() != 0) {
+            rgb_matrix_sethsv_noeeprom(rgb_matrix_get_hue(), rgb_matrix_get_sat(), 0);
+        }
+        // Avoid writing anything to the EEPROM here (function called at high frequency, potential risk of writing too often)
+    }
+
 #    ifdef CAPS_LOCK_LED_INDEX
     RGB_MATRIX_INDICATOR_SWITCH_KEY(host_keyboard_led_state().caps_lock, CAPS_LOCK_LED_INDEX);
 #    endif  // CAPS_LOCK_LED_INDEX
