@@ -54,6 +54,9 @@
 /* Enable selected RGB mode indicator LEDs on FN press */
 #define SELECTED_RGB_MODE_LED
 
+/* Enable MAC mode on/off indicator LED on FN press */
+#define MAC_LED_INDEX 86
+
 // Manage indicators LEDs pre-processor directives
 #if defined(CAPS_LOCK_LED_INDEX) || \
     defined(NUM_LOCK_LED_INDEX) ||  \
@@ -61,10 +64,11 @@
 #    define HOST_INDICATOR_KEYS
 #endif
 
-#if defined(NKRO_LED_INDEX) ||      \
-    defined(FN_LED_INDEX) ||        \
-    defined(RGB_MODE_LED_INDEX) ||  \
-    defined(SELECTED_RGB_MODE_LED)
+#if defined(NKRO_LED_INDEX) ||          \
+    defined(FN_LED_INDEX) ||            \
+    defined(RGB_MODE_LED_INDEX) ||      \
+    defined(SELECTED_RGB_MODE_LED) ||   \
+    defined(MAC_LED_INDEX)
 #    define FN_INDICATOR_KEYS
 #endif
 

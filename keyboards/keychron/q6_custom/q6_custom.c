@@ -33,7 +33,7 @@ bool dip_switch_update_kb(uint8_t index, bool active) {
         return false;
     }
     if (index == 0) {
-        default_layer_set(1UL << (active ? 2 : 0));
+        default_layer_set(1UL << (active ? WIN_BASE : MAC_BASE));
     }
     return true;
 }
@@ -228,6 +228,10 @@ bool rgb_matrix_indicators_advanced_kb(uint8_t led_min, uint8_t led_max) {
         mode_units_index_range,
         mode_tens_index_range);
 #        endif  // SELECTED_RGB_MODE_LED
+
+#        ifdef MAC_LED_INDEX
+    RGB_MATRIX_INDICATOR_SWITCH_KEY(fn_layer_on && (default_layer_state == (1UL << MAC_BASE)), MAC_LED_INDEX);
+#        endif  // MAC_LED_INDEX
 
 #    endif  // FN_INDICATOR_KEYS
 
