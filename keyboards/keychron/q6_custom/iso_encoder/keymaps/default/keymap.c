@@ -57,4 +57,4 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [WIN_BASE] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
     [WIN_FN]   = {ENCODER_CCW_CW(RGB_HUD, RGB_HUI) }
 };
-#endif
+#endif  // ENCODER_MAP_ENABLE

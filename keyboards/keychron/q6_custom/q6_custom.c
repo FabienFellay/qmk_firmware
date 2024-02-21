@@ -38,6 +38,20 @@ bool dip_switch_update_kb(uint8_t index, bool active) {
     return true;
 }
 
+layer_state_t default_layer_state_set_kb(layer_state_t state) {
+    // Clear any FN layer on default layer change
+    layer_clear();
+
+    return default_layer_state_set_user(state);
+}
+
+layer_state_t layer_state_set_kb(layer_state_t state) {
+    // Avoid to enable the wrong FN layer when the FN key and the DIP switch are pushed at the same time
+    state &= (default_layer_state << 1);
+
+    return layer_state_set_user(state);
+}
+
 #endif  // DIP_SWITCH_ENABLE
 
 #ifdef STATUS_INDICATOR_KEYS
@@ -207,7 +221,7 @@ bool rgb_matrix_indicators_advanced_kb(uint8_t led_min, uint8_t led_max) {
 
 #    ifdef FN_INDICATOR_KEYS
 
-    const bool fn_layer_on = (layer_state_is(MAC_FN) || layer_state_is(WIN_FN));
+    const bool fn_layer_on = (IS_LAYER_ON(MAC_FN) || IS_LAYER_ON(WIN_FN));
 
 #        ifdef FN_LED_INDEX
     RGB_MATRIX_INDICATOR_SWITCH_KEY(fn_layer_on, FN_LED_INDEX);

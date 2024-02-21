@@ -58,3 +58,13 @@
 
 /* Select the default RGB matrix flag */
 // Setting this from config.h is not implemented yet: all flags enabled by default
+
+/* Tap count needed for toggling a feature (like changing layer with TT) */
+#define TAPPING_TOGGLE 2
+
+/* Period of tapping (ms) */
+#define TAPPING_TERM 100
+
+/* Make tap and hold keys work better for fast typists */
+#define HOLD_ON_OTHER_KEY_PRESS
+// Immediately decide on hold instead of tap (without waiting the tapping term) if another key is pressed
