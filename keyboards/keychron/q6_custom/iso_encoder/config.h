@@ -57,6 +57,9 @@
 /* Enable MAC mode on/off indicator LED on FN press */
 #define MAC_LED_INDEX 86
 
+/* Enable debug on/off indicator LED on FN press */
+#define DB_LED_INDEX 84
+
 // Manage indicators LEDs pre-processor directives
 #if defined(CAPS_LOCK_LED_INDEX) || \
     defined(NUM_LOCK_LED_INDEX) ||  \
@@ -68,7 +71,8 @@
     defined(FN_LED_INDEX) ||            \
     defined(RGB_MODE_LED_INDEX) ||      \
     defined(SELECTED_RGB_MODE_LED) ||   \
-    defined(MAC_LED_INDEX)
+    defined(MAC_LED_INDEX) ||           \
+    defined(DB_LED_INDEX)
 #    define FN_INDICATOR_KEYS
 #endif
 

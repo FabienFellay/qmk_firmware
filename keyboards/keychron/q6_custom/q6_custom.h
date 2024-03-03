@@ -16,6 +16,8 @@
 
 #pragma once
 
+#include "quantum.h"
+
 /* Layers list */
 enum layers{
   MAC_BASE,
@@ -30,4 +32,31 @@ enum layers{
 #        define RGB_MATRIX_EFFECT_DEFAULT_ON true
 #    endif  // RGB_MATRIX_EFFECT_DEFAULT_ON
 
+/* Indicators LEDs colors */
+static const RGB rgb_on  = (RGB){RGB_WHITE};
+static const RGB rgb_off = (RGB){RGB_OFF};
+
 #endif  // STATUS_INDICATOR_KEYS
+
+// Custom EEPROM structure
+typedef union {
+    uint32_t raw;
+    struct PACKED {
+        // Store the debug enable-disable state
+        bool    debug_message_enable : 1;
+#ifdef STATUS_INDICATOR_KEYS
+        // States to enable-disable the rgb matrix effects while preserving the indicators
+        bool    rgb_matrix_effect_enable : 1;
+        uint8_t mode : 6;
+        uint8_t value;
+#endif  // STATUS_INDICATOR_KEYS
+    };
+} kb_config_t;
+
+#ifndef NKRO_DEFAULT_ON
+#    define NKRO_DEFAULT_ON false
+#endif  // NKRO_DEFAULT_ON
+
+#ifndef DEBUG_MESSAGE_DEFAULT_ON
+#    define DEBUG_MESSAGE_DEFAULT_ON false
+#endif  // DEBUG_MESSAGE_DEFAULT_ON

@@ -45,7 +45,7 @@
 #define RGB_MATRIX_SPD_STEP 15      // 18 repeatable levels
 #define RGB_MATRIX_DEFAULT_SPD 75   // Reachable initial value level
 
-/* Select the default RGB matrix status */
+/* Select the default RGB matrix status after EEPROM reset */
 #ifdef STATUS_INDICATOR_KEYS
 // Enable RGB feature by default to allow indicator LEDs
 #    define RGB_MATRIX_DEFAULT_ON true
@@ -58,6 +58,12 @@
 
 /* Select the default RGB matrix flag */
 // Setting this from config.h is not implemented yet: all flags enabled by default
+
+/* Select the default NKRO status after EEPROM reset */
+#define NKRO_DEFAULT_ON true
+
+/* Select the default debug message status after EEPROM reset */
+#define DEBUG_MESSAGE_DEFAULT_ON false
 
 /* Tap count needed for toggling a feature (like changing layer with TT) */
 #define TAPPING_TOGGLE 2

@@ -72,7 +72,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    QK_RBT,     _______,  _______,  _______,  _______,  _______,  _______,  _______,
         RGB_TOG,  RGB_MOD,  RGB_VAI,  RGB_HUI,  RGB_SAI,  RGB_SPI,  _______,  _______,  _______,  _______,  _______,  _______,  _______,                EE_CLR,   _______,  _______,  KC_BTN1,  KC_MS_U,  KC_BTN2,
         _______,  RGB_RMOD, RGB_VAD,  RGB_HUD,  RGB_SAD,  RGB_SPD,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    _______,                                  KC_MS_L,  KC_BTN3,  KC_MS_R,  KC_BTN8,
-        _______,  _______,  _______,  _______,  _______,  _______,  _______,  NK_TOGG,  _______,  _______,  _______,  _______,              _______,              KC_WH_U,            KC_BTN4,  KC_MS_D,  KC_BTN5,
+        _______,  _______,  _______,  _______,  _______,  _______,  DB_TOGG,  NK_TOGG,  _______,  _______,  _______,  _______,              _______,              KC_WH_U,            KC_BTN4,  KC_MS_D,  KC_BTN5,
         _______,  _______,  _______,                                _______,                                _______,  _______,  _______,    _______,    KC_WH_L,  KC_WH_D,  KC_WH_R,  KC_BTN6,            KC_BTN7,  _______),
     [WIN_BASE] = LAYOUT_iso_110(
         KC_ESC,   KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,     KC_MUTE,    KC_PSCR,  KC_SCRL,  KC_PAUS,  KC_F13,   KC_F14,   KC_F15,   KC_F16,
@@ -86,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    QK_RBT,     _______,  _______,  _______,  _______,  _______,  _______,  _______,
         RGB_TOG,  RGB_MOD,  RGB_VAI,  RGB_HUI,  RGB_SAI,  RGB_SPI,  _______,  _______,  _______,  _______,  _______,  _______,  _______,                EE_CLR,   _______,  _______,  KC_BTN1,  KC_MS_U,  KC_BTN2,
         _______,  RGB_RMOD, RGB_VAD,  RGB_HUD,  RGB_SAD,  RGB_SPD,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    _______,                                  KC_MS_L,  KC_BTN3,  KC_MS_R,  KC_BTN8,
-        _______,  _______,  _______,  _______,  _______,  _______,  _______,  NK_TOGG,  _______,  _______,  _______,  _______,              _______,              KC_WH_U,            KC_BTN4,  KC_MS_D,  KC_BTN5,
+        _______,  _______,  _______,  _______,  _______,  _______,  DB_TOGG,  NK_TOGG,  _______,  _______,  _______,  _______,              _______,              KC_WH_U,            KC_BTN4,  KC_MS_D,  KC_BTN5,
         _______,  _______,  _______,                                _______,                                _______,  _______,  _______,    _______,    KC_WH_L,  KC_WH_D,  KC_WH_R,  KC_BTN6,            KC_BTN7,  _______),
 };
 
@@ -182,11 +182,10 @@ void matrix_scan_user(void) {
 
 // Keymap level default EEPROM settings after EEPROM reset: N-key rollover
 void eeconfig_init_user(void) {
-    // Enable NKRO immediately after reset
     keymap_config.raw = 0;  // All options disabled
 
     clear_keyboard();  // Clear first buffer to prevent stuck keys
-    keymap_config.nkro = true;  // Enable NKRO
+    keymap_config.nkro = NKRO_DEFAULT_ON;  // Apply NKRO setting
     eeconfig_update_keymap(keymap_config.raw);  // Write default value to EEPROM now
     clear_keyboard();  // Clear to prevent stuck keys
 }

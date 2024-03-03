@@ -14,7 +14,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "quantum.h"
 #include "q6_custom.h"
 
 const matrix_row_t matrix_mask[] = {
@@ -54,31 +53,20 @@ layer_state_t layer_state_set_kb(layer_state_t state) {
 
 #endif  // DIP_SWITCH_ENABLE
 
-#ifdef STATUS_INDICATOR_KEYS
-
-// Indicators LEDs colors
-static const RGB rgb_on  = (RGB){RGB_WHITE};
-static const RGB rgb_off = (RGB){RGB_OFF};
-
-// Custom structure to enable-disable the rgb matrix effects while preserving the indicators
-typedef union {
-    uint32_t raw;
-    struct PACKED {
-        bool    rgb_matrix_effect_enable : 1;
-        uint8_t mode : 7;
-        uint8_t value;
-    };
-} kb_config_t;
-
+// Custom EEPROM structure
 kb_config_t kb_config;
 
 // Keyboard level default EEPROM settings after EEPROM reset
 void eeconfig_init_kb(void) {
     kb_config.raw = 0;
 
+    kb_config.debug_message_enable = DEBUG_MESSAGE_DEFAULT_ON;
+
+#ifdef STATUS_INDICATOR_KEYS
     kb_config.rgb_matrix_effect_enable = RGB_MATRIX_EFFECT_DEFAULT_ON;
     kb_config.mode = RGB_MATRIX_DEFAULT_MODE;
     kb_config.value = RGB_MATRIX_DEFAULT_VAL;
+#endif  // STATUS_INDICATOR_KEYS
 
     eeconfig_update_kb(kb_config.raw);  // Write default value to EEPROM
 
@@ -90,22 +78,34 @@ void keyboard_post_init_kb(void) {
     // Read the custom keyboard config from EEPROM
     kb_config.raw = eeconfig_read_kb();
 
+#ifdef STATUS_INDICATOR_KEYS
     // Set initial rgb effect state after boot
     if (!kb_config.rgb_matrix_effect_enable) {
         // Disable the rgb effect by setting the mode and the color without writing to the EEPROM
         rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
         rgb_matrix_sethsv_noeeprom(rgb_matrix_config.hsv.h, rgb_matrix_config.hsv.s, 0);
-    }
-    // else the whole rgb config is automatically loaded from EEPROM
+    }  // else: the whole rgb config is automatically loaded from EEPROM
+#endif  // STATUS_INDICATOR_KEYS
+
+    // Debug configuration
+#ifndef NO_DEBUG
+    debug_enable = kb_config.debug_message_enable;
+#else
+    debug_enable = false;
+#endif  // NO_DEBUG
+    debug_matrix = false;
+    debug_keyboard = false;
+    debug_mouse = false;
 }
 
-// Indicators LEDs controls
+// Indicators LEDs controls and debug state management
 bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
     if (!process_record_user(keycode, record)) {
         return false;
     }
 
     switch (keycode) {
+#ifdef STATUS_INDICATOR_KEYS
         case RGB_TOG:
             if (record->event.pressed) {
                 // On key press
@@ -117,9 +117,17 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                 }
 
                 // Toggle rgb matrix effect
+                kb_config.rgb_matrix_effect_enable ^= 1;
                 if (kb_config.rgb_matrix_effect_enable) {
+                    // Change rgb matrix effect
+                    eeconfig_update_kb(kb_config.raw);  // Write the custom keyboard settings to EEPROM
+
+                    // Enable the rgb effect by getting the mode and the color hsv value back from the custom keyboard settings
+                    rgb_matrix_mode(kb_config.mode);
+                    rgb_matrix_sethsv(rgb_matrix_get_hue(), rgb_matrix_get_sat(), kb_config.value);
+
+                } else {
                     // Store the mode and the color hsv value in the custom keyboard settings
-                    kb_config.rgb_matrix_effect_enable = false;
                     kb_config.mode = rgb_matrix_get_mode();
                     kb_config.value = rgb_matrix_get_val();
                     eeconfig_update_kb(kb_config.raw);  // Write the custom keyboard settings to EEPROM
@@ -127,15 +135,6 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                     // Disable the rgb effect by setting the mode and the color hsv value without writing to the EEPROM
                     rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
                     rgb_matrix_sethsv_noeeprom(rgb_matrix_get_hue(), rgb_matrix_get_sat(), 0);
-
-                } else {
-                    // Enable the rgb effect by getting the mode and the color hsv value back from the custom keyboard settings
-                    rgb_matrix_mode(kb_config.mode);
-                    rgb_matrix_sethsv(rgb_matrix_get_hue(), rgb_matrix_get_sat(), kb_config.value);
-
-                    // Change rgb matrix effect
-                    kb_config.rgb_matrix_effect_enable = true;
-                    eeconfig_update_kb(kb_config.raw);  // Write the custom keyboard settings to EEPROM
                 }
             }
             return false;  // Skip all further processing of this key
@@ -144,11 +143,33 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
         case RGB_MODE_FORWARD ... RGB_MODE_TWINKLE:  // For any of the RGB codes (see quantum/keycodes.h for reference)
             // Continue further processing of those keys only if the rgb matrix effect is on
             return kb_config.rgb_matrix_effect_enable;
+#endif  // STATUS_INDICATOR_KEYS
+
+#ifndef NO_DEBUG
+        // Manage EEPROM config for debug state
+        case DB_TOGG:
+            if (record->event.pressed) {
+                // On key press
+                debug_enable ^= 1;
+                if (debug_enable) {
+                    print("DEBUG: enabled.\n");
+                } else {
+                    print("DEBUG: disabled.\n");
+                }
+
+                // Write the custom keyboard settings to EEPROM
+                kb_config.debug_message_enable = debug_enable;
+                eeconfig_update_kb(kb_config.raw);
+            }
+            return false;  // Skip all further processing of this key
+#endif  // NO_DEBUG
 
         default:
             return true;  // Process all other keycodes normally
     }
 }
+
+#ifdef STATUS_INDICATOR_KEYS
 
 // Indicators LEDs helper function-like macro
 #    define RGB_MATRIX_INDICATOR_SWITCH_KEY(condition, index)                   \
@@ -246,6 +267,10 @@ bool rgb_matrix_indicators_advanced_kb(uint8_t led_min, uint8_t led_max) {
 #        ifdef MAC_LED_INDEX
     RGB_MATRIX_INDICATOR_SWITCH_KEY(fn_layer_on && (default_layer_state == (1UL << MAC_BASE)), MAC_LED_INDEX);
 #        endif  // MAC_LED_INDEX
+
+#        ifdef DB_LED_INDEX
+    RGB_MATRIX_INDICATOR_SWITCH_KEY(fn_layer_on && debug_config.enable, DB_LED_INDEX);
+#        endif  // DB_LED_INDEX
 
 #    endif  // FN_INDICATOR_KEYS
 
