@@ -57,7 +57,7 @@
 #endif  // STATUS_INDICATOR_KEYS
 
 /* Select the default RGB matrix flag */
-// Setting this from config.h is not implemented yet: all flags enabled by default
+#define LED_MATRIX_DEFAULT_FLAGS LED_FLAG_ALL   // All flags enabled by default
 
 /* Select the default NKRO status after EEPROM reset */
 #define NKRO_DEFAULT_ON true
