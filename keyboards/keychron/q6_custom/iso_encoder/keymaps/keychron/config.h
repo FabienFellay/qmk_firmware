@@ -74,3 +74,6 @@
 /* Make tap and hold keys work better for fast typists */
 #define HOLD_ON_OTHER_KEY_PRESS
 // Immediately decide on hold instead of tap (without waiting the tapping term) if another key is pressed
+
+/* Ensure a correct keyboard protocol (and thus NKRO) on machines with dual-boot */
+#define OS_DETECTION_KEYBOARD_RESET
