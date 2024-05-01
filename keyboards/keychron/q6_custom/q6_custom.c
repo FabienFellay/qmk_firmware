@@ -144,6 +144,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                 debug_enable ^= 1;
                 if (debug_enable) {
                     print("DEBUG: enabled.\n");
+                    uprintf("Keyboard protocol: %d\n", keyboard_protocol);
                 } else {
                     print("DEBUG: disabled.\n");
                 }
