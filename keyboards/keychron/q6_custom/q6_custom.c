@@ -139,6 +139,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
 #ifndef NO_DEBUG
         // Manage EEPROM config for debug state
         case DB_TOGG:
+            // Replace and customize the process for the debug key (no post_process_record_kb possible for this particular key)
             if (record->event.pressed) {
                 // On key press
                 debug_enable ^= 1;
