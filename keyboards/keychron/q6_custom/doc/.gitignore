@@ -1,0 +1,5 @@
+# Do not ignore the manually built source svg files in these subfolders
+!*.svg
+
+# Ensure to ignore the generated pdf files in these subfolders
+*.pdf

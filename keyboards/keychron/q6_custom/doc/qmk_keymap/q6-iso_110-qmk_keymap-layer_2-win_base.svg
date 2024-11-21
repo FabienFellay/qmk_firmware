@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="240mm" height="80mm" version="1.1" viewBox="0 0 240 80" xmlns="http://www.w3.org/2000/svg">
+ <g id="q6-iso_110-qmk_keymap-layer_2-win_base">
+  <rect id="page" x="0" y="0" width="240" height="80" rx="0" ry="0" fill="#ffffff"/>
+  <g id="keyboard" transform="translate(7.5,8.75)">
+   <rect id="background" x="-2.5" y="-2.5" width="230" height="67.5" rx="1.25" ry="1.25" fill="#ececec" stroke="#000000" stroke-width=".4"/>
+   <rect id="os_switch" x="17.5" y="-3.5" width="5" height="1" rc="0.5" ry="0.5" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+   <rect id="os_select" x="20.5" y="-3.5" width="2" height="1" rc="0.5" ry="0.5" fill="#000000" stroke="#000000" stroke-width=".4"/>
+   <text id="text1 os_switch" x="17.5" y="-5" fill="#000000" font-family="sans-serif" font-size="2.25px" text-anchor="end">Mac ←</text>
+   <text id="text2 os_switch" x="22.5" y="-5" fill="#000000" font-family="sans-serif" font-size="2.25px" text-anchor="start">→ <tspan font-weight="bold">Win / Linux</tspan></text>
+   <g id="matrix[0,0]" transform="translate(0,0)">
+    <rect id="keycap matrix[0,0]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ff8080" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[0,0]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">ESC</text>
+    <text id="text2 matrix[0,0]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x29</text>
+    <text id="text3 matrix[0,0]" x="5" y="7.85" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">(DFU mode:</text>
+    <text id="text4 matrix[0,0]" x="5" y="9" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">hold after reboot)</text>
+   </g>
+   <g id="matrix[0,1]" transform="translate(12.5,0)">
+    <rect id="keycap matrix[0,1]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[0,1]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">F1</text>
+    <text id="text2 matrix[0,1]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x3A</text>
+   </g>
+   <g id="matrix[0,2]" transform="translate(22.5,0)">
+    <rect id="keycap matrix[0,2]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[0,2]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">F2</text>
+    <text id="text2 matrix[0,2]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x3B</text>
+   </g>
+   <g id="matrix[0,3]" transform="translate(32.5,0)">
+    <rect id="keycap matrix[0,3]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[0,3]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">F3</text>
+    <text id="text2 matrix[0,3]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x3C</text>
+   </g>
+   <g id="matrix[0,4]" transform="translate(42.5,0)">
+    <rect id="keycap matrix[0,4]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[0,4]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">F4</text>
+    <text id="text2 matrix[0,4]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x3D</text>
+   </g>
+   <g id="matrix[0,5]" transform="translate(55,0)">
+    <rect id="keycap matrix[0,5]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#b3b3b3" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[0,5]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">F5</text>
+    <text id="text2 matrix[0,5]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x3E</text>
+   </g>
+   <g id="matrix[0,6]" transform="translate(65,0)">
+    <rect id="keycap matrix[0,6]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#b3b3b3" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[0,6]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">F6</text>
+    <text id="text2 matrix[0,6]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x3F</text>
+   </g>
+   <g id="matrix[0,7]" transform="translate(75,0)">
+    <rect id="keycap matrix[0,7]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#b3b3b3" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[0,7]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">F7</text>
+    <text id="text2 matrix[0,7]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x40</text>
+   </g>
+   <g id="matrix[0,8]" transform="translate(85,0)">
+    <rect id="keycap matrix[0,8]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#b3b3b3" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[0,8]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">F8</text>
+    <text id="text2 matrix[0,8]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x41</text>
+   </g>
+   <g id="matrix[0,9]" transform="translate(97.5,0)">
+    <rect id="keycap matrix[0,9]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#f9f9f9" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[0,9]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">F9</text>
+    <text id="text2 matrix[0,9]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x42</text>
+   </g>
+   <g id="matrix[0,10]" transform="translate(107.5,0)">
+    <rect id="keycap matrix[0,10]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#f9f9f9" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[0,10]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">F10</text>
+    <text id="text2 matrix[0,10]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x43</text>
+   </g>
+   <g id="matrix[0,11]" transform="translate(117.5,0)">
+    <rect id="keycap matrix[0,11]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#f9f9f9" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[0,11]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">F11</text>
+    <text id="text2 matrix[0,11]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x44</text>
+   </g>
+   <g id="matrix[0,12]" transform="translate(127.5,0)">
+    <rect id="keycap matrix[0,12]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#f9f9f9" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[0,12]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">F12</text>
+    <text id="text2 matrix[0,12]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x45</text>
+   </g>
+   <g id="matrix[4,19]" transform="translate(140,0)">
+    <rect id="keycap matrix[4,19]" x="0" y="0" width="10" height="10" rx="5" ry="5" fill="#b3b3b3" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[4,19]" x="5" y="-0.6" fill="#000000" font-family="sans-serif" font-size="1.5px" text-anchor="middle">CCW: VOLD</text>
+    <text id="text2 matrix[4,19]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">MUTE</text>
+    <text id="text3 matrix[4,19]" x="5" y="11.6" fill="#000000" font-family="sans-serif" font-size="1.5px" text-anchor="middle">CW: VOLU</text>
+   </g>
+   <g id="matrix[0,14]" transform="translate(152.5,0)">
+    <rect id="keycap matrix[0,14]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#b3b3b3" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[0,14]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">PSCR</text>
+    <text id="text2 matrix[0,14]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x46</text>
+   </g>
+   <g id="matrix[0,15]" transform="translate(162.5,0)">
+    <rect id="keycap matrix[0,15]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#b3b3b3" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[0,15]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">SCRL</text>
+    <text id="text2 matrix[0,15]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x47</text>
+   </g>
+   <g id="matrix[0,16]" transform="translate(172.5,0)">
+    <rect id="keycap matrix[0,16]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#b3b3b3" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[0,16]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">PAUS</text>
+    <text id="text2 matrix[0,16]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x48</text>
+   </g>
+   <g id="matrix[0,19]" transform="translate(185,0)">
+    <rect id="keycap matrix[0,19]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[0,19]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">F13</text>
+    <text id="text2 matrix[0,19]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x68</text>
+   </g>
+   <g id="matrix[1,19]" transform="translate(195,0)">
+    <rect id="keycap matrix[1,19]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[1,19]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">F14</text>
+    <text id="text2 matrix[1,19]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x69</text>
+   </g>
+   <g id="matrix[2,19]" transform="translate(205,0)">
+    <rect id="keycap matrix[2,19]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[2,19]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">F15</text>
+    <text id="text2 matrix[2,19]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x6A</text>
+   </g>
+   <g id="matrix[3,19]" transform="translate(215,0)">
+    <rect id="keycap matrix[3,19]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[3,19]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">F16</text>
+    <text id="text2 matrix[3,19]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x6B</text>
+   </g>
+   <g id="matrix[1,0]" transform="translate(0,12.5)">
+    <rect id="keycap matrix[1,0]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#b3b3b3" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[1,0]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">GRV</text>
+    <text id="text2 matrix[1,0]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x35</text>
+   </g>
+   <g id="matrix[1,1]" transform="translate(10,12.5)">
+    <rect id="keycap matrix[1,1]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[1,1]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">1</text>
+    <text id="text2 matrix[1,1]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x1E</text>
+   </g>
+   <g id="matrix[1,2]" transform="translate(20,12.5)">
+    <rect id="keycap matrix[1,2]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[1,2]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">2</text>
+    <text id="text2 matrix[1,2]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x1F</text>
+   </g>
+   <g id="matrix[1,3]" transform="translate(30,12.5)">
+    <rect id="keycap matrix[1,3]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[1,3]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">3</text>
+    <text id="text2 matrix[1,3]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x20</text>
+   </g>
+   <g id="matrix[1,4]" transform="translate(40,12.5)">
+    <rect id="keycap matrix[1,4]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[1,4]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">4</text>
+    <text id="text2 matrix[1,4]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x21</text>
+   </g>
+   <g id="matrix[1,5]" transform="translate(50,12.5)">
+    <rect id="keycap matrix[1,5]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[1,5]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">5</text>
+    <text id="text2 matrix[1,5]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x22</text>
+   </g>
+   <g id="matrix[1,6]" transform="translate(60,12.5)">
+    <rect id="keycap matrix[1,6]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[1,6]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">6</text>
+    <text id="text2 matrix[1,6]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x23</text>
+   </g>
+   <g id="matrix[1,7]" transform="translate(70,12.5)">
+    <rect id="keycap matrix[1,7]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[1,7]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">7</text>
+    <text id="text2 matrix[1,7]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x24</text>
+   </g>
+   <g id="matrix[1,8]" transform="translate(80,12.5)">
+    <rect id="keycap matrix[1,8]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[1,8]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">8</text>
+    <text id="text2 matrix[1,8]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x25</text>
+   </g>
+   <g id="matrix[1,9]" transform="translate(90,12.5)">
+    <rect id="keycap matrix[1,9]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[1,9]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">9</text>
+    <text id="text2 matrix[1,9]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x26</text>
+   </g>
+   <g id="matrix[1,10]" transform="translate(100,12.5)">
+    <rect id="keycap matrix[1,10]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[1,10]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">0</text>
+    <text id="text2 matrix[1,10]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x27</text>
+   </g>
+   <g id="matrix[1,11]" transform="translate(110,12.5)">
+    <rect id="keycap matrix[1,11]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[1,11]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">MINS</text>
+    <text id="text2 matrix[1,11]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x2D</text>
+   </g>
+   <g id="matrix[1,12]" transform="translate(120,12.5)">
+    <rect id="keycap matrix[1,12]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[1,12]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">EQL</text>
+    <text id="text2 matrix[1,12]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x2E</text>
+   </g>
+   <g id="matrix[1,13]" transform="translate(130,12.5)">
+    <rect id="keycap matrix[1,13]" x="0" y="0" width="20" height="10" rx="1.25" ry="1.25" fill="#b3b3b3" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[1,13]" x="10" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">BSPC</text>
+    <text id="text2 matrix[1,13]" x="10" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x2A</text>
+   </g>
+   <g id="matrix[1,14]" transform="translate(152.5,12.5)">
+    <rect id="keycap matrix[1,14]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#b3b3b3" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[1,14]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">INS</text>
+    <text id="text2 matrix[1,14]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x49</text>
+   </g>
+   <g id="matrix[1,15]" transform="translate(162.5,12.5)">
+    <rect id="keycap matrix[1,15]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#b3b3b3" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[1,15]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">HOME</text>
+    <text id="text2 matrix[1,15]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x4A</text>
+   </g>
+   <g id="matrix[1,16]" transform="translate(172.5,12.5)">
+    <rect id="keycap matrix[1,16]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#b3b3b3" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[1,16]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">PGUP</text>
+    <text id="text2 matrix[1,16]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x4B</text>
+   </g>
+   <g id="matrix[1,17]" transform="translate(185,12.5)">
+    <rect id="keycap matrix[1,17]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[1,17]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">NUM</text>
+    <text id="text2 matrix[1,17]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x53</text>
+   </g>
+   <g id="matrix[1,18]" transform="translate(195,12.5)">
+    <rect id="keycap matrix[1,18]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[1,18]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">PSLS</text>
+    <text id="text2 matrix[1,18]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x54</text>
+   </g>
+   <g id="matrix[0,17]" transform="translate(205,12.5)">
+    <rect id="keycap matrix[0,17]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[0,17]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">PAST</text>
+    <text id="text2 matrix[0,17]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x55</text>
+   </g>
+   <g id="matrix[0,18]" transform="translate(215,12.5)">
+    <rect id="keycap matrix[0,18]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[0,18]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">PMNS</text>
+    <text id="text2 matrix[0,18]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x56</text>
+   </g>
+   <g id="matrix[2,0]" transform="translate(0,22.5)">
+    <rect id="keycap matrix[2,0]" x="0" y="0" width="15" height="10" rx="1.25" ry="1.25" fill="#b3b3b3" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[2,0]" x="7.5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">TAB</text>
+    <text id="text2 matrix[2,0]" x="7.5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x2B</text>
+   </g>
+   <g id="matrix[2,1]" transform="translate(15,22.5)">
+    <rect id="keycap matrix[2,1]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[2,1]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">Q</text>
+    <text id="text2 matrix[2,1]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x14</text>
+   </g>
+   <g id="matrix[2,2]" transform="translate(25,22.5)">
+    <rect id="keycap matrix[2,2]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[2,2]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">W</text>
+    <text id="text2 matrix[2,2]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x1A</text>
+   </g>
+   <g id="matrix[2,3]" transform="translate(35,22.5)">
+    <rect id="keycap matrix[2,3]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[2,3]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">E</text>
+    <text id="text2 matrix[2,3]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x08</text>
+   </g>
+   <g id="matrix[2,4]" transform="translate(45,22.5)">
+    <rect id="keycap matrix[2,4]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[2,4]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">R</text>
+    <text id="text2 matrix[2,4]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x15</text>
+   </g>
+   <g id="matrix[2,5]" transform="translate(55,22.5)">
+    <rect id="keycap matrix[2,5]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[2,5]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">T</text>
+    <text id="text2 matrix[2,5]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x17</text>
+   </g>
+   <g id="matrix[2,6]" transform="translate(65,22.5)">
+    <rect id="keycap matrix[2,6]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[2,6]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">Y</text>
+    <text id="text2 matrix[2,6]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x1C</text>
+   </g>
+   <g id="matrix[2,7]" transform="translate(75,22.5)">
+    <rect id="keycap matrix[2,7]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[2,7]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">U</text>
+    <text id="text2 matrix[2,7]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x18</text>
+   </g>
+   <g id="matrix[2,8]" transform="translate(85,22.5)">
+    <rect id="keycap matrix[2,8]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[2,8]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">I</text>
+    <text id="text2 matrix[2,8]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x0C</text>
+   </g>
+   <g id="matrix[2,9]" transform="translate(95,22.5)">
+    <rect id="keycap matrix[2,9]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[2,9]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">O</text>
+    <text id="text2 matrix[2,9]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x12</text>
+   </g>
+   <g id="matrix[2,10]" transform="translate(105,22.5)">
+    <rect id="keycap matrix[2,10]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[2,10]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">P</text>
+    <text id="text2 matrix[2,10]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x13</text>
+   </g>
+   <g id="matrix[2,11]" transform="translate(115,22.5)">
+    <rect id="keycap matrix[2,11]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[2,11]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">LBRC</text>
+    <text id="text2 matrix[2,11]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x2F</text>
+   </g>
+   <g id="matrix[2,12]" transform="translate(125,22.5)">
+    <rect id="keycap matrix[2,12]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[2,12]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">RBRC</text>
+    <text id="text2 matrix[2,12]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x30</text>
+   </g>
+   <g id="matrix[2,13]" transform="translate(135,22.5)">
+    <path id="keycap matrix[2,13]" d="m2.5 11.25v7.5c0 0.6925 0.5575 1.25 1.25 1.25h10c0.6925 0 1.25-0.5575 1.25-1.25v-17.5c0-0.6925-0.5575-1.25-1.25-1.25h-12.5c-0.6925 0-1.25 0.5575-1.25 1.25v7.5c0 0.6925 0.5575 1.25 1.25 1.25 0.6925 0 1.25 0.5575 1.25 1.25z" fill="#b3b3b3" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[2,13]" x="8.75" y="11" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">ENT</text>
+    <text id="text2 matrix[2,13]" x="7.5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x28</text>
+   </g>
+   <g id="matrix[2,14]" transform="translate(152.5,22.5)">
+    <rect id="keycap matrix[2,14]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#b3b3b3" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[2,14]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">DEL</text>
+    <text id="text2 matrix[2,14]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x4C</text>
+   </g>
+   <g id="matrix[2,15]" transform="translate(162.5,22.5)">
+    <rect id="keycap matrix[2,15]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#b3b3b3" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[2,15]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">END</text>
+    <text id="text2 matrix[2,15]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x4D</text>
+   </g>
+   <g id="matrix[2,16]" transform="translate(172.5,22.5)">
+    <rect id="keycap matrix[2,16]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#b3b3b3" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[2,16]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">PGDN</text>
+    <text id="text2 matrix[2,16]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x4E</text>
+   </g>
+   <g id="matrix[2,17]" transform="translate(185,22.5)">
+    <rect id="keycap matrix[2,17]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[2,17]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">P7</text>
+    <text id="text2 matrix[2,17]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x5F</text>
+   </g>
+   <g id="matrix[2,18]" transform="translate(195,22.5)">
+    <rect id="keycap matrix[2,18]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[2,18]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">P8</text>
+    <text id="text2 matrix[2,18]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x60</text>
+   </g>
+   <g id="matrix[3,14]" transform="translate(205,22.5)">
+    <rect id="keycap matrix[3,14]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[3,14]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">P9</text>
+    <text id="text2 matrix[3,14]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x61</text>
+   </g>
+   <g id="matrix[3,15]" transform="translate(215,22.5)">
+    <rect id="keycap matrix[3,15]" x="0" y="0" width="10" height="20" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[3,15]" x="5" y="11" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">PPLS</text>
+    <text id="text2 matrix[3,15]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x57</text>
+   </g>
+   <g id="matrix[3,0]" transform="translate(0,32.5)">
+    <rect id="keycap matrix[3,0]" x="0" y="0" width="17.5" height="10" rx="1.25" ry="1.25" fill="#b3b3b3" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[3,0]" x="8.75" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">CAPS</text>
+    <text id="text2 matrix[3,0]" x="8.75" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x39</text>
+   </g>
+   <g id="matrix[3,1]" transform="translate(17.5,32.5)">
+    <rect id="keycap matrix[3,1]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[3,1]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">A</text>
+    <text id="text2 matrix[3,1]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x04</text>
+   </g>
+   <g id="matrix[3,2]" transform="translate(27.5,32.5)">
+    <rect id="keycap matrix[3,2]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[3,2]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">S</text>
+    <text id="text2 matrix[3,2]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x16</text>
+   </g>
+   <g id="matrix[3,3]" transform="translate(37.5,32.5)">
+    <rect id="keycap matrix[3,3]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[3,3]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">D</text>
+    <text id="text2 matrix[3,3]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x07</text>
+   </g>
+   <g id="matrix[3,4]" transform="translate(47.5,32.5)">
+    <rect id="keycap matrix[3,4]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <rect id="refmark matrix[3,4]" x="4" y="9" width="2" height="0.25" rc="0.125" ry="0.125" fill="#000000" fill-opacity="0" stroke="#000000" stroke-width=".1"/>
+    <text id="text1 matrix[3,4]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">F</text>
+    <text id="text2 matrix[3,4]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x09</text>
+   </g>
+   <g id="matrix[3,5]" transform="translate(57.5,32.5)">
+    <rect id="keycap matrix[3,5]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[3,5]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">G</text>
+    <text id="text2 matrix[3,5]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x0A</text>
+   </g>
+   <g id="matrix[3,6]" transform="translate(67.5,32.5)">
+    <rect id="keycap matrix[3,6]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[3,6]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">H</text>
+    <text id="text2 matrix[3,6]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x0B</text>
+   </g>
+   <g id="matrix[3,7]" transform="translate(77.5,32.5)">
+    <rect id="keycap matrix[3,7]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <rect id="refmark matrix[3,7]" x="4" y="9" width="2" height="0.25" rc="0.125" ry="0.125" fill="#000000" fill-opacity="0" stroke="#000000" stroke-width=".1"/>
+    <text id="text1 matrix[3,7]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">J</text>
+    <text id="text2 matrix[3,7]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x0D</text>
+   </g>
+   <g id="matrix[3,8]" transform="translate(87.5,32.5)">
+    <rect id="keycap matrix[3,8]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[3,8]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">K</text>
+    <text id="text2 matrix[3,8]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x0E</text>
+   </g>
+   <g id="matrix[3,9]" transform="translate(97.5,32.5)">
+    <rect id="keycap matrix[3,9]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[3,9]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">L</text>
+    <text id="text2 matrix[3,9]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x0F</text>
+   </g>
+   <g id="matrix[3,10]" transform="translate(107.5,32.5)">
+    <rect id="keycap matrix[3,10]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[3,10]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">SCLN</text>
+    <text id="text2 matrix[3,10]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x33</text>
+   </g>
+   <g id="matrix[3,11]" transform="translate(117.5,32.5)">
+    <rect id="keycap matrix[3,11]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[3,11]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">QUOT</text>
+    <text id="text2 matrix[3,11]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x34</text>
+   </g>
+   <g id="matrix[3,13]" transform="translate(127.5,32.5)">
+    <rect id="keycap matrix[3,13]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#b3b3b3" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[3,13]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">NUHS</text>
+    <text id="text2 matrix[3,13]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x32</text>
+   </g>
+   <g id="matrix[3,17]" transform="translate(185,32.5)">
+    <rect id="keycap matrix[3,17]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[3,17]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">P4</text>
+    <text id="text2 matrix[3,17]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x5C</text>
+   </g>
+   <g id="matrix[3,18]" transform="translate(195,32.5)">
+    <rect id="keycap matrix[3,18]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <rect id="refmark matrix[3,18]" x="4" y="9" width="2" height="0.25" rc="0.125" ry="0.125" fill="#000000" fill-opacity="0" stroke="#000000" stroke-width=".1"/>
+    <text id="text1 matrix[3,18]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">P5</text>
+    <text id="text2 matrix[3,18]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x5D</text>
+   </g>
+   <g id="matrix[3,16]" transform="translate(205,32.5)">
+    <rect id="keycap matrix[3,16]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[3,16]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">P6</text>
+    <text id="text2 matrix[3,16]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x5E</text>
+   </g>
+   <g id="matrix[4,0]" transform="translate(0,42.5)">
+    <rect id="keycap matrix[4,0]" x="0" y="0" width="12.5" height="10" rx="1.25" ry="1.25" fill="#b3b3b3" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[4,0]" x="6.25" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">LSFT</text>
+    <text id="text2 matrix[4,0]" x="6.25" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0xE1</text>
+   </g>
+   <g id="matrix[4,1]" transform="translate(12.5,42.5)">
+    <rect id="keycap matrix[4,1]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#b3b3b3" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[4,1]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">NUBS</text>
+    <text id="text2 matrix[4,1]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x64</text>
+   </g>
+   <g id="matrix[4,2]" transform="translate(22.5,42.5)">
+    <rect id="keycap matrix[4,2]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[4,2]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">Z</text>
+    <text id="text2 matrix[4,2]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x1D</text>
+   </g>
+   <g id="matrix[4,3]" transform="translate(32.5,42.5)">
+    <rect id="keycap matrix[4,3]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[4,3]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">X</text>
+    <text id="text2 matrix[4,3]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x1B</text>
+   </g>
+   <g id="matrix[4,4]" transform="translate(42.5,42.5)">
+    <rect id="keycap matrix[4,4]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[4,4]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">C</text>
+    <text id="text2 matrix[4,4]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x06</text>
+   </g>
+   <g id="matrix[4,5]" transform="translate(52.5,42.5)">
+    <rect id="keycap matrix[4,5]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[4,5]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">V</text>
+    <text id="text2 matrix[4,5]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x19</text>
+   </g>
+   <g id="matrix[4,6]" transform="translate(62.5,42.5)">
+    <rect id="keycap matrix[4,6]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[4,6]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">B</text>
+    <text id="text2 matrix[4,6]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x05</text>
+   </g>
+   <g id="matrix[4,7]" transform="translate(72.5,42.5)">
+    <rect id="keycap matrix[4,7]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[4,7]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">N</text>
+    <text id="text2 matrix[4,7]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x11</text>
+   </g>
+   <g id="matrix[4,8]" transform="translate(82.5,42.5)">
+    <rect id="keycap matrix[4,8]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[4,8]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">M</text>
+    <text id="text2 matrix[4,8]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x10</text>
+   </g>
+   <g id="matrix[4,9]" transform="translate(92.5,42.5)">
+    <rect id="keycap matrix[4,9]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[4,9]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">COMM</text>
+    <text id="text2 matrix[4,9]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x36</text>
+   </g>
+   <g id="matrix[4,10]" transform="translate(102.5,42.5)">
+    <rect id="keycap matrix[4,10]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[4,10]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">DOT</text>
+    <text id="text2 matrix[4,10]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x37</text>
+   </g>
+   <g id="matrix[4,11]" transform="translate(112.5,42.5)">
+    <rect id="keycap matrix[4,11]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[4,11]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">SLSH</text>
+    <text id="text2 matrix[4,11]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x38</text>
+   </g>
+   <g id="matrix[4,13]" transform="translate(122.5,42.5)">
+    <rect id="keycap matrix[4,13]" x="0" y="0" width="27.5" height="10" rx="1.25" ry="1.25" fill="#b3b3b3" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[4,13]" x="13.75" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">RSFT</text>
+    <text id="text2 matrix[4,13]" x="13.75" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0xE5</text>
+   </g>
+   <g id="matrix[4,15]" transform="translate(162.5,42.5)">
+    <rect id="keycap matrix[4,15]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <rect id="refmark matrix[4,15]" x="4" y="9" width="2" height="0.25" rc="0.125" ry="0.125" fill="#000000" fill-opacity="0" stroke="#000000" stroke-width=".1"/>
+    <text id="text1 matrix[4,15]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">UP</text>
+    <text id="text2 matrix[4,15]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x52</text>
+   </g>
+   <g id="matrix[4,17]" transform="translate(185,42.5)">
+    <rect id="keycap matrix[4,17]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[4,17]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">P1</text>
+    <text id="text2 matrix[4,17]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x59</text>
+   </g>
+   <g id="matrix[4,18]" transform="translate(195,42.5)">
+    <rect id="keycap matrix[4,18]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[4,18]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">P2</text>
+    <text id="text2 matrix[4,18]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x5A</text>
+   </g>
+   <g id="matrix[4,14]" transform="translate(205,42.5)">
+    <rect id="keycap matrix[4,14]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[4,14]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">P3</text>
+    <text id="text2 matrix[4,14]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x5B</text>
+   </g>
+   <g id="matrix[4,16]" transform="translate(215,42.5)">
+    <rect id="keycap matrix[4,16]" x="0" y="0" width="10" height="20" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[4,16]" x="5" y="11" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">PENT</text>
+    <text id="text2 matrix[4,16]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x58</text>
+   </g>
+   <g id="matrix[5,0]" transform="translate(0,52.5)">
+    <rect id="keycap matrix[5,0]" x="0" y="0" width="12.5" height="10" rx="1.25" ry="1.25" fill="#b3b3b3" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[5,0]" x="6.25" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">LCTL</text>
+    <text id="text2 matrix[5,0]" x="6.25" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0xE0</text>
+   </g>
+   <g id="matrix[5,1]" transform="translate(12.5,52.5)">
+    <rect id="keycap matrix[5,1]" x="0" y="0" width="12.5" height="10" rx="1.25" ry="1.25" fill="#b3b3b3" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[5,1]" x="6.25" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">LWIN</text>
+    <text id="text2 matrix[5,1]" x="6.25" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0xE3</text>
+   </g>
+   <g id="matrix[5,2]" transform="translate(25,52.5)">
+    <rect id="keycap matrix[5,2]" x="0" y="0" width="12.5" height="10" rx="1.25" ry="1.25" fill="#b3b3b3" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[5,2]" x="6.25" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">LALT</text>
+    <text id="text2 matrix[5,2]" x="6.25" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0xE2</text>
+   </g>
+   <g id="matrix[5,6]" transform="translate(37.5,52.5)">
+    <rect id="keycap matrix[5,6]" x="0" y="0" width="62.5" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[5,6]" x="31.25" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">SPC</text>
+    <text id="text2 matrix[5,6]" x="31.25" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x2C</text>
+   </g>
+   <g id="matrix[5,10]" transform="translate(100,52.5)">
+    <rect id="keycap matrix[5,10]" x="0" y="0" width="12.5" height="10" rx="1.25" ry="1.25" fill="#b3b3b3" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[5,10]" x="6.25" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">RALT</text>
+    <text id="text2 matrix[5,10]" x="6.25" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0xE6</text>
+   </g>
+   <g id="matrix[5,11]" transform="translate(112.5,52.5)">
+    <rect id="keycap matrix[5,11]" x="0" y="0" width="12.5" height="10" rx="1.25" ry="1.25" fill="#b3b3b3" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[5,11]" x="6.25" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">RWIN</text>
+    <text id="text2 matrix[5,11]" x="6.25" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0xE7</text>
+   </g>
+   <g id="matrix[5,12]" transform="translate(125,52.5)">
+    <rect id="keycap matrix[5,12]" x="0" y="0" width="12.5" height="10" rx="1.25" ry="1.25" fill="#b3b3b3" stroke="#000000" stroke-width=".4"/>
+    <text id="text matrix[5,12]" x="6.25" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">TT(3)</text>
+   </g>
+   <g id="matrix[5,13]" transform="translate(137.5,52.5)">
+    <rect id="keycap matrix[5,13]" x="0" y="0" width="12.5" height="10" rx="1.25" ry="1.25" fill="#b3b3b3" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[5,13]" x="6.25" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">RCTL</text>
+    <text id="text2 matrix[5,13]" x="6.25" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0xE4</text>
+   </g>
+   <g id="matrix[5,14]" transform="translate(152.5,52.5)">
+    <rect id="keycap matrix[5,14]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[5,14]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">LEFT</text>
+    <text id="text2 matrix[5,14]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x50</text>
+   </g>
+   <g id="matrix[5,15]" transform="translate(162.5,52.5)">
+    <rect id="keycap matrix[5,15]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[5,15]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">DOWN</text>
+    <text id="text2 matrix[5,15]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x51</text>
+   </g>
+   <g id="matrix[5,16]" transform="translate(172.5,52.5)">
+    <rect id="keycap matrix[5,16]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[5,16]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">RGHT</text>
+    <text id="text2 matrix[5,16]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x4F</text>
+   </g>
+   <g id="matrix[5,17]" transform="translate(185,52.5)">
+    <rect id="keycap matrix[5,17]" x="0" y="0" width="20" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[5,17]" x="10" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">P0</text>
+    <text id="text2 matrix[5,17]" x="10" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x62</text>
+   </g>
+   <g id="matrix[5,18]" transform="translate(205,52.5)">
+    <rect id="keycap matrix[5,18]" x="0" y="0" width="10" height="10" rx="1.25" ry="1.25" fill="#ffffff" stroke="#000000" stroke-width=".4"/>
+    <text id="text1 matrix[5,18]" x="5" y="6" fill="#000000" font-family="sans-serif" font-size="2.75px" text-anchor="middle">PDOT</text>
+    <text id="text2 matrix[5,18]" x="5" y="1.75" fill="#262626" font-family="sans-serif" font-size="1.0px" text-anchor="middle">p. 0x07 - ID: 0x63</text>
+   </g>
+  </g>
+ </g>
+</svg>

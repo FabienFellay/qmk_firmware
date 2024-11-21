@@ -1,0 +1,30 @@
+\usepackage{xcolor}
+\definecolor{bgcolor}{HTML}{e6e6e6}
+\definecolor{tcolor}{HTML}{404040}
+\definecolor{warncolor}{HTML}{cb4b16}
+\definecolor{flag_red}{HTML}{ff8080}
+\definecolor{flag_green}{HTML}{87de87}
+\definecolor{flag_blue}{HTML}{80b3ff}
+\definecolor{flag_cyan}{HTML}{87ebff}
+\definecolor{flag_magenta}{HTML}{ffb3ff}
+\definecolor{flag_yellow}{HTML}{ffde87}
+\definecolor{flag_white}{HTML}{ffebff}
+\let\oldtexttt\texttt
+
+\renewcommand{\texttt}[1]{%
+  \textcolor{tcolor}{\colorbox{bgcolor}{\oldtexttt{#1}}}%
+}
+\newcommand{\textttcolor}[2]{%
+  \textcolor{tcolor}{\colorbox{#1}{\oldtexttt{#2}}}%
+}
+\newcommand{\textwarn}[1]{%
+  \textcolor{warncolor}{#1}%
+}
+
+\newcommand{\fixedtextasciigrave}{%
+  {\fontfamily{fvs}\selectfont\textasciigrave}%
+}
+
+\usepackage{fontawesome}
+\usepackage{twemojis}
+\usepackage[open=true]{bookmark} % Expand PDF bookmarks on document opening
